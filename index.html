@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ar" dir="rtl" data-theme="light"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f5efe2"><link rel="manifest" href="manifest.json"><link rel="icon" href="icon.svg">
+<meta name="theme-color" content="#f5efe2"><link rel="manifest" href="manifest.json"><link rel="icon" href="icon.svg"><link rel="apple-touch-icon" href="icon-192.png"><script>try{var t=localStorage.getItem("tasbih-theme");if(t==="dark"){document.documentElement.dataset.theme="dark";document.querySelector("meta[name=theme-color]").content="#0b1a21"}}catch(e){}</script>
 <title>مسبحتي</title>
 <style>
 :root{--bg:#0b1a21;--bg2:#10252d;--card:#142c35;--card2:#1a3640;--line:#25454f;--ink:#f3eee1;--mut:#92aba8;--gold:#e3bd62;--teal:#47c2aa;--glow:#47c2aa40;--shadow:0 10px 30px #0006;--ringtrack:#1f3d46;--tapa:#2a5361}
@@ -63,8 +63,15 @@ textarea{width:100%;height:80px;background:var(--bg);color:var(--ink);border:1px
 .ver{text-align:center;color:var(--mut);font-size:11px;margin:20px 0}
 .ad{border-top:1px solid var(--line);padding:14px 0}.ad .ar{font-size:22px;line-height:2;margin:6px 0}.ad button{margin-top:6px}
 .q{margin:6px 0;padding:6px 10px;border-right:3px solid var(--gold)}.q div{padding:3px 0}.sura{border-top:1px dashed var(--line);margin-top:10px;padding-top:6px}.crd{font-size:11px;color:var(--mut);margin-top:10px;line-height:1.7}
+
+#boot{position:fixed;inset:0;z-index:99;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:var(--bg);transition:opacity .22s ease,visibility .22s}
+#boot.gone{opacity:0;visibility:hidden}
+#boot svg{width:96px;height:96px;animation:bootin .5s ease both}
+#boot b{font-size:30px;color:var(--gold);letter-spacing:.5px;animation:bootin .5s .08s ease both}
+@keyframes bootin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){#boot svg,#boot b{animation:none}#boot{transition:none}}
 </style>
-</head><body>
+</head><body><div id="boot" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50.0" cy="21.5" r="5.1" fill="var(--gold)"/><circle cx="68.3" cy="28.2" r="5.1" fill="var(--gold)"/><circle cx="78.1" cy="45.1" r="5.1" fill="var(--gold)"/><circle cx="74.7" cy="64.2" r="5.1" fill="var(--gold)"/><circle cx="59.7" cy="76.8" r="5.1" fill="var(--gold)"/><circle cx="40.3" cy="76.8" r="5.1" fill="var(--gold)"/><circle cx="25.3" cy="64.3" r="5.1" fill="var(--gold)"/><circle cx="21.9" cy="45.1" r="5.1" fill="var(--gold)"/><circle cx="31.7" cy="28.2" r="5.1" fill="var(--gold)"/><circle cx="50" cy="50" r="11.7" fill="none" stroke="var(--teal)" stroke-width="2"/></svg><b>مسبحتي</b></div>
 <header><div class="brand"><h1>مسبحتي</h1><span id="date"></span></div><div class="hr"><span id="net">متصل</span><button id="theme" type="button" aria-label="تغيير المظهر">☾</button></div></header>
 <div class="sheet" id="sheet"><div class="sheetbox"><div class="mut" style="text-align:center">اختر الذكر</div><div class="chips" id="chips"></div></div></div>
 <main>
@@ -111,7 +118,7 @@ const DHIKR=[
  {id:'tahlil',t:'لا إله إلا الله',n:100},{id:'istighfar',t:'أستغفر الله',n:100},{id:'salat',t:'اللهم صلِّ وسلم على نبينا محمد',short:'الصلاة على النبي',n:100},{id:'free',t:'تسبيح حر',n:0}];
 const $=id=>document.getElementById(id);
 const dayKey=(d=new Date())=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-const VER='5.2';
+const VER='5.3';
 const SEQ=['sub','hamd','akbar'];
 let db,device,seq=0,events=new Map(),meta={},cur='sub',pending=0,vibOn=true,autoOn=false,wl=null;
 function allDhikr(){return DHIKR.concat(mv('custom',[]))}
@@ -166,7 +173,7 @@ async function reader(s){const a=await loadAd();if(!a){$('reader').textContent='
  $('reader').onclick=e=>{const k=e.target.dataset.k;if(k==null)return;const i=L[+k];if(sum('adhkar',s+':'+i.id,day)<i.n){addEvent('adhkar',s+':'+i.id,1)}
   if(L.every(x=>sum('adhkar',s+':'+x.id,day)>=x.n)&&!mv('done:'+s+':'+day,0))setMeta('done:'+s+':'+day,1);reader(s);render()}}
 
-function applyTheme(){const t=mv('theme','light');document.documentElement.dataset.theme=t;const m=document.querySelector('meta[name=theme-color]');if(m)m.content=t==='dark'?'#0b1a21':'#f5efe2';$('theme').textContent=t==='dark'?'☀':'☾';
+function applyTheme(){const t=mv('theme','light');document.documentElement.dataset.theme=t;try{localStorage.setItem('tasbih-theme',t)}catch(e){}const m=document.querySelector('meta[name=theme-color]');if(m)m.content=t==='dark'?'#0b1a21':'#f5efe2';$('theme').textContent=t==='dark'?'☀':'☾';
  try{$('date').textContent=new Date().toLocaleDateString('ar-EG',{weekday:'long',day:'numeric',month:'long'})}catch(x){}}
 $('theme').onclick=()=>{setMeta('theme',mv('theme','light')==='dark'?'light':'dark');applyTheme()};
 function stepDhikr(d){const L=allDhikr(),i=L.findIndex(x=>x.id===cur);cur=L[(i+d+L.length)%L.length].id;setMeta('cur',cur);render()}
@@ -207,6 +214,8 @@ $('imp').onclick=async()=>{try{const o=JSON.parse($('box').value);let n=0;for(co
 $('nav').onclick=e=>{const b=e.target.closest('button');if(!b)return;const s=b.dataset.s;document.querySelectorAll('section').forEach(x=>x.classList.toggle('on',x.id==='s-'+s));document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));scrollTo(0,0)};
 function net(){$('net').textContent=navigator.onLine?'متصل':'أوفلاين';$('net').className=navigator.onLine?'':'off'}
 addEventListener('online',net);addEventListener('offline',net);
+function hideBoot(){var b=document.getElementById('boot');if(b){b.classList.add('gone');setTimeout(function(){b.remove()},400)}}
+setTimeout(hideBoot,3000);
 (async()=>{net();
  db=await open();for(const e of await all('events'))events.set(e.id,e);for(const m of await all('meta'))meta[m.k]=m;
  device=mv('device',null);if(!device){device='d'+Math.random().toString(36).slice(2,10);setMeta('device',device)}
@@ -215,5 +224,5 @@ addEventListener('online',net);addEventListener('offline',net);
  $('store').textContent=st;
  if('serviceWorker' in navigator&&location.protocol.startsWith('http')){const had=!!navigator.serviceWorker.controller;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had)$('updbox').innerHTML='<div class="upd"><div>تتوفر نسخة جديدة من التطبيق. اضغط إعادة التحميل لتفعيلها.</div><button class="btn gold" type="button" onclick="location.reload()">إعادة التحميل</button></div>'});navigator.serviceWorker.register('sw.js').catch(()=>{});}
  fireNotes();setInterval(()=>{banners();fireNotes()},30000);
- window.__ready=true})();
+ window.__ready=true;hideBoot()})();
 </script></body></html>
