@@ -66,12 +66,20 @@ textarea{width:100%;height:80px;background:var(--bg);color:var(--ink);border:1px
 
 #boot{position:fixed;inset:0;z-index:99;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:var(--bg);transition:opacity .22s ease,visibility .22s}
 #boot.gone{opacity:0;visibility:hidden}
-#boot svg{width:96px;height:96px;animation:bootin .5s ease both}
-#boot b{font-size:30px;color:var(--gold);letter-spacing:.5px;animation:bootin .5s .08s ease both}
-@keyframes bootin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-@media(prefers-reduced-motion:reduce){#boot svg,#boot b{animation:none}#boot{transition:none}}
+#boot svg{width:120px;height:120px;overflow:visible}
+#boot .d{transform-box:fill-box;transform-origin:center;opacity:0;animation:dpop .4s cubic-bezier(.2,1.4,.4,1) both,dglow .8s ease-in-out both}
+#boot .r{stroke-dasharray:74;stroke-dashoffset:74;transform-origin:50px 50px;transform:rotate(-90deg);animation:rdraw .5s .45s ease-out forwards,rbreath 2s 1s ease-in-out infinite}
+#boot b{font-size:32px;color:var(--gold);letter-spacing:.5px;opacity:0;animation:btitle .45s .6s ease-out both}
+@keyframes dpop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+@keyframes dglow{0%,100%{filter:none}50%{filter:drop-shadow(0 0 3px var(--gold))}}
+@keyframes rdraw{to{stroke-dashoffset:0}}
+@keyframes rbreath{0%,100%{opacity:1}50%{opacity:.55}}
+@keyframes btitle{from{opacity:0;transform:translateY(8px);letter-spacing:6px}to{opacity:1;transform:none;letter-spacing:.5px}}
+#boot svg{animation:bspin 1.2s cubic-bezier(.3,.1,.2,1) both}
+@keyframes bspin{from{transform:rotate(-40deg) scale(.92)}to{transform:none}}
+@media(prefers-reduced-motion:reduce){#boot *{animation:none!important;opacity:1!important}#boot .r{stroke-dashoffset:0}#boot{transition:none}}
 </style>
-</head><body><div id="boot" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50.0" cy="21.5" r="5.1" fill="var(--gold)"/><circle cx="68.3" cy="28.2" r="5.1" fill="var(--gold)"/><circle cx="78.1" cy="45.1" r="5.1" fill="var(--gold)"/><circle cx="74.7" cy="64.2" r="5.1" fill="var(--gold)"/><circle cx="59.7" cy="76.8" r="5.1" fill="var(--gold)"/><circle cx="40.3" cy="76.8" r="5.1" fill="var(--gold)"/><circle cx="25.3" cy="64.3" r="5.1" fill="var(--gold)"/><circle cx="21.9" cy="45.1" r="5.1" fill="var(--gold)"/><circle cx="31.7" cy="28.2" r="5.1" fill="var(--gold)"/><circle cx="50" cy="50" r="11.7" fill="none" stroke="var(--teal)" stroke-width="2"/></svg><b>مسبحتي</b></div>
+</head><body><div id="boot" aria-hidden="true"><svg viewBox="0 0 100 100"><circle class="d" style="animation-delay:0.00s,0.35s" cx="50.0" cy="21.5" r="5.1" fill="var(--gold)"/><circle class="d" style="animation-delay:0.05s,0.40s" cx="68.3" cy="28.2" r="5.1" fill="var(--gold)"/><circle class="d" style="animation-delay:0.10s,0.45s" cx="78.1" cy="45.1" r="5.1" fill="var(--gold)"/><circle class="d" style="animation-delay:0.15s,0.50s" cx="74.7" cy="64.2" r="5.1" fill="var(--gold)"/><circle class="d" style="animation-delay:0.20s,0.55s" cx="59.7" cy="76.8" r="5.1" fill="var(--gold)"/><circle class="d" style="animation-delay:0.25s,0.60s" cx="40.3" cy="76.8" r="5.1" fill="var(--gold)"/><circle class="d" style="animation-delay:0.30s,0.65s" cx="25.3" cy="64.3" r="5.1" fill="var(--gold)"/><circle class="d" style="animation-delay:0.35s,0.70s" cx="21.9" cy="45.1" r="5.1" fill="var(--gold)"/><circle class="d" style="animation-delay:0.40s,0.75s" cx="31.7" cy="28.2" r="5.1" fill="var(--gold)"/><circle class="r" cx="50" cy="50" r="11.7" fill="none" stroke="var(--teal)" stroke-width="2"/></svg><b>مسبحتي</b></div>
 <header><div class="brand"><h1>مسبحتي</h1><span id="date"></span></div><div class="hr"><span id="net">متصل</span><button id="theme" type="button" aria-label="تغيير المظهر">☾</button></div></header>
 <div class="sheet" id="sheet"><div class="sheetbox"><div class="mut" style="text-align:center">اختر الذكر</div><div class="chips" id="chips"></div></div></div>
 <main>
@@ -118,7 +126,7 @@ const DHIKR=[
  {id:'tahlil',t:'لا إله إلا الله',n:100},{id:'istighfar',t:'أستغفر الله',n:100},{id:'salat',t:'اللهم صلِّ وسلم على نبينا محمد',short:'الصلاة على النبي',n:100},{id:'free',t:'تسبيح حر',n:0}];
 const $=id=>document.getElementById(id);
 const dayKey=(d=new Date())=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-const VER='5.3';
+const VER='5.4';
 const SEQ=['sub','hamd','akbar'];
 let db,device,seq=0,events=new Map(),meta={},cur='sub',pending=0,vibOn=true,autoOn=false,wl=null;
 function allDhikr(){return DHIKR.concat(mv('custom',[]))}
@@ -214,8 +222,9 @@ $('imp').onclick=async()=>{try{const o=JSON.parse($('box').value);let n=0;for(co
 $('nav').onclick=e=>{const b=e.target.closest('button');if(!b)return;const s=b.dataset.s;document.querySelectorAll('section').forEach(x=>x.classList.toggle('on',x.id==='s-'+s));document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('on',x===b));scrollTo(0,0)};
 function net(){$('net').textContent=navigator.onLine?'متصل':'أوفلاين';$('net').className=navigator.onLine?'':'off'}
 addEventListener('online',net);addEventListener('offline',net);
-function hideBoot(){var b=document.getElementById('boot');if(b){b.classList.add('gone');setTimeout(function(){b.remove()},400)}}
-setTimeout(hideBoot,3000);
+var T0=Date.now(),MIN=1200;function hideNow(){var b=document.getElementById('boot');if(b){b.classList.add('gone');setTimeout(function(){b.remove()},400)}}
+function hideBoot(){var w=MIN-(Date.now()-T0);if(w>0)setTimeout(hideNow,w);else hideNow()}
+setTimeout(hideNow,2800);(function(){var b=document.getElementById('boot');if(b)b.addEventListener('click',hideNow)})();
 (async()=>{net();
  db=await open();for(const e of await all('events'))events.set(e.id,e);for(const m of await all('meta'))meta[m.k]=m;
  device=mv('device',null);if(!device){device='d'+Math.random().toString(36).slice(2,10);setMeta('device',device)}
