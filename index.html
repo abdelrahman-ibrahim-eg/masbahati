@@ -95,7 +95,14 @@ input[type=search],#dtext,#dn{background:var(--bg);color:var(--ink);border:1px s
 #dclose{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:16px;padding:0}
 .dbody{overflow-y:auto;padding:12px 14px 28px;flex:1}
 .focus #menu{display:none}
-.pv{white-space:nowrap}</style>
+.pv{white-space:nowrap}
+.rcl{display:flex;gap:8px;margin:10px 0}.rcl .chip{flex:1;text-align:center}
+.sq{width:100%;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:10px;font-size:15px;font-family:inherit;margin:8px 0}
+.sl{max-height:46vh;overflow:auto}.sl button{display:flex;gap:10px;align-items:center;width:100%;background:none;border:0;border-bottom:1px solid var(--line);color:var(--ink);font-family:inherit;font-size:16px;padding:11px 4px;text-align:right}
+.sl button b{color:var(--gold);min-width:28px;font-size:13px}.sl button.on{color:var(--gold);font-weight:700}
+.pl{position:sticky;bottom:84px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px;margin:10px 0;box-shadow:var(--shadow)}
+.pl audio{width:100%;margin-top:8px}.pl .row{margin-top:6px}
+</style>
 </head><body><div id="boot" aria-hidden="true"><svg viewBox="0 0 100 100"><circle class="d" style="animation-delay:0.00s,0.25s" cx="50.0" cy="21.5" r="5.1" fill="var(--gold)"/><circle class="d" style="animation-delay:0.04s,0.29s" cx="68.3" cy="28.2" r="5.1" fill="var(--gold)"/><circle class="d" style="animation-delay:0.08s,0.33s" cx="78.1" cy="45.1" r="5.1" fill="var(--gold)"/><circle class="d" style="animation-delay:0.12s,0.37s" cx="74.7" cy="64.2" r="5.1" fill="var(--gold)"/><circle class="d" style="animation-delay:0.16s,0.41s" cx="59.7" cy="76.8" r="5.1" fill="var(--gold)"/><circle class="d" style="animation-delay:0.20s,0.45s" cx="40.3" cy="76.8" r="5.1" fill="var(--gold)"/><circle class="d" style="animation-delay:0.24s,0.49s" cx="25.3" cy="64.3" r="5.1" fill="var(--gold)"/><circle class="d" style="animation-delay:0.28s,0.53s" cx="21.9" cy="45.1" r="5.1" fill="var(--gold)"/><circle class="d" style="animation-delay:0.32s,0.57s" cx="31.7" cy="28.2" r="5.1" fill="var(--gold)"/><circle class="r" cx="50" cy="50" r="11.7" fill="none" stroke="var(--teal)" stroke-width="2"/></svg><b>مسبحتي</b></div>
 <header><div class="brand"><h1>مسبحتي</h1><span id="date"></span></div><div class="hr"><button id="menu" type="button" aria-label="الإعدادات" aria-expanded="false">☰</button><span id="net">متصل</span><button id="theme" type="button" aria-label="تغيير المظهر">☾</button></div></header>
 <div class="sheet" id="sheet"><div class="sheetbox"><div class="mut" style="text-align:center">اختر الذكر</div><input type="search" id="q" placeholder="ابحث في الأذكار" autocomplete="off" style="margin-top:10px"><div class="chips" id="chips"></div></div></div>
@@ -139,8 +146,18 @@ input[type=search],#dtext,#dn{background:var(--bg);color:var(--ink);border:1px s
  <div class="card"><button class="btn" id="notif" type="button">اسمح بالإشعارات</button>
  <p class="mut">التذكير يظهر أوفلاين طالما التطبيق مفتوح أو لما تفتحه. المتصفح لا يضمن إشعارًا والتطبيق مقفول، فبنعرض لك تنبيه داخل الصفحة أول ما تفتح لو الميعاد عدّى ولسه ماتمّتش.</p></div>
 </section>
+<section id="s-quran">
+ <div class="banner">التلاوة تحتاج إنترنت (بث مباشر، ولا تُحمَّل على الجهاز). باقي المسبحة تعمل أوفلاين كالمعتاد.</div>
+ <div class="rcl" id="rcl"></div>
+ <input class="sq" id="sq" type="search" placeholder="ابحث عن سورة" autocomplete="off">
+ <div class="pl"><div id="pt" class="mut">اختر سورة للاستماع</div><audio id="au" controls preload="none"></audio>
+ <div class="row"><button class="btn" id="qprev" type="button">السورة السابقة</button><button class="btn" id="qnext" type="button">السورة التالية</button></div>
+ <div class="mut" id="qmsg"></div></div>
+ <div class="card sl" id="sl"></div>
+ <p class="mut">المصدر: mp3quran.net. التلاوة بصوت القارئ المختار من موقعهم مباشرة.</p>
+</section>
 <div class="ver" id="ver"></div></main>
-<nav id="nav"><button data-s="tasbih" class="on" type="button"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/></svg><span>المسبحة</span></button><button data-s="stats" type="button"><svg viewBox="0 0 24 24"><path d="M5 20V11M12 20V5M19 20v-6"/></svg><span>إنجازي</span></button><button data-s="wird" type="button"><svg viewBox="0 0 24 24"><path d="M4 5.5C6 4.5 9 4.5 12 6c3-1.5 6-1.5 8-.5V19c-2-1-5-1-8 .5-3-1.5-6-1.5-8-.5z"/><path d="M12 6v13.5"/></svg><span>الورد</span></button><button data-s="adhkar" type="button"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/></svg><span>الأذكار</span></button></nav>
+<nav id="nav"><button data-s="tasbih" class="on" type="button"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/></svg><span>المسبحة</span></button><button data-s="stats" type="button"><svg viewBox="0 0 24 24"><path d="M5 20V11M12 20V5M19 20v-6"/></svg><span>إنجازي</span></button><button data-s="wird" type="button"><svg viewBox="0 0 24 24"><path d="M4 5.5C6 4.5 9 4.5 12 6c3-1.5 6-1.5 8-.5V19c-2-1-5-1-8 .5-3-1.5-6-1.5-8-.5z"/><path d="M12 6v13.5"/></svg><span>الورد</span></button><button data-s="adhkar" type="button"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/></svg><span>الأذكار</span></button><button data-s="quran" type="button"><svg viewBox="0 0 24 24"><path d="M5 14v-2a7 7 0 0 1 14 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></svg><span>التلاوة</span></button></nav>
 <script>
 'use strict';
 const DHIKR=[
@@ -148,7 +165,7 @@ const DHIKR=[
  {id:'tahlil',t:'لا إله إلا الله',n:100},{id:'istighfar',t:'أستغفر الله',n:100},{id:'salat',t:'اللهم صلِّ وسلم على نبينا محمد',short:'الصلاة على النبي',n:100},{id:'free',t:'تسبيح حر',n:0}];
 const $=id=>document.getElementById(id);
 const dayKey=(d=new Date())=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-const VER='5.6';
+const VER='5.7';
 const SEQ=['sub','hamd','akbar'];
 let db,device,seq=0,events=new Map(),meta={},cur='sub',pending=0,vibOn=true,autoOn=false,wl=null;
 function allDhikr(){return DHIKR.concat(mv('custom',[]))}
@@ -294,5 +311,20 @@ setTimeout(hideNow,2800);(function(){var b=document.getElementById('boot');if(b)
  $('store').textContent=st;
  if('serviceWorker' in navigator&&location.protocol.startsWith('http')){const had=!!navigator.serviceWorker.controller;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had)$('updbox').innerHTML='<div class="upd"><div>تتوفر نسخة جديدة من التطبيق. اضغط إعادة التحميل لتفعيلها.</div><button class="btn gold" type="button" onclick="location.reload()">إعادة التحميل</button></div>'});navigator.serviceWorker.register('sw.js').catch(()=>{});}
  fireNotes();setInterval(()=>{banners();fireNotes()},30000);
+
+(function(){const N=["الفاتحة", "البقرة", "آل عمران", "النساء", "المائدة", "الأنعام", "الأعراف", "الأنفال", "التوبة", "يونس", "هود", "يوسف", "الرعد", "إبراهيم", "الحجر", "النحل", "الإسراء", "الكهف", "مريم", "طه", "الأنبياء", "الحج", "المؤمنون", "النور", "الفرقان", "الشعراء", "النمل", "القصص", "العنكبوت", "الروم", "لقمان", "السجدة", "الأحزاب", "سبأ", "فاطر", "يس", "الصافات", "ص", "الزمر", "غافر", "فصلت", "الشورى", "الزخرف", "الدّخان", "الجاثية", "الأحقاف", "محمد", "الفتح", "الحجرات", "ق", "الذاريات", "الطور", "النجم", "القمر", "الرحمن", "الواقعة", "الحديد", "المجادلة", "الحشر", "الممتحنة", "الصف", "الجمعة", "المنافقون", "التغابن", "الطلاق", "التحريم", "الملك", "القلم", "الحاقة", "المعارج", "نوح", "الجن", "المزمل", "المدثر", "القيامة", "الإنسان", "المرسلات", "النبأ", "النازعات", "عبس", "التكوير", "الإنفطار", "المطففين", "الإنشقاق", "البروج", "الطارق", "الأعلى", "الغاشية", "الفجر", "البلد", "الشمس", "الليل", "الضحى", "الشرح", "التين", "العلق", "القدر", "البينة", "الزلزلة", "العاديات", "القارعة", "التكاثر", "العصر", "الهمزة", "الفيل", "قريش", "الماعون", "الكوثر", "الكافرون", "النصر", "المسد", "الإخلاص", "الفلق", "الناس"];const R=[{k:'y',n:'ياسر الدوسري',u:'https://cdn.mp3quran.net/audio/yasser-dosari/r1/'},{k:'h',n:'محمود خليل الحصري',u:'https://cdn.mp3quran.net/audio/mahmoud-husary/r1/'}];
+let ri=0,cur=0;try{ri=Math.min(1,Math.max(0,+localStorage.getItem('tasbih-reciter')||0))}catch(x){}
+const au=$('au'),msg=t=>$('qmsg').textContent=t||'';
+const url=n=>R[ri].u+String(n).padStart(3,'0')+'.mp3';
+function drawR(){$('rcl').innerHTML=R.map((r,i)=>'<button type="button" class="chip'+(i===ri?' on':'')+'" data-i="'+i+'">'+r.n+'</button>').join('')}
+function drawL(){const q=$('sq').value.trim();$('sl').innerHTML=N.map((x,i)=>[i+1,x]).filter(a=>!q||a[1].indexOf(q)>-1||String(a[0])===q).map(a=>'<button type="button" data-n="'+a[0]+'"'+(a[0]===cur?' class="on"':'')+'><b>'+a[0]+'</b><span>'+a[1]+'</span></button>').join('')||'<div class="mut">لا توجد نتيجة</div>'}
+function play(n){if(n<1||n>114)return;cur=n;if(!navigator.onLine){msg('لا يوجد إنترنت الآن. التلاوة تحتاج اتصالًا.');}else msg('');au.src=url(n);$('pt').textContent='سورة '+N[n-1]+' - '+R[ri].n;au.play().catch(()=>{});drawL();
+ if('mediaSession' in navigator){try{navigator.mediaSession.metadata=new MediaMetadata({title:'سورة '+N[n-1],artist:R[ri].n,album:'مسبحتي'});navigator.mediaSession.setActionHandler('nexttrack',()=>play(cur+1));navigator.mediaSession.setActionHandler('previoustrack',()=>play(cur-1))}catch(x){}}}
+$('rcl').onclick=e=>{const b=e.target.closest('button');if(!b)return;ri=+b.dataset.i;try{localStorage.setItem('tasbih-reciter',ri)}catch(x){}drawR();if(cur){const t=au.currentTime,p=!au.paused;au.src=url(cur);$('pt').textContent='سورة '+N[cur-1]+' - '+R[ri].n;au.currentTime=0;if(p)au.play().catch(()=>{})}};
+$('sl').onclick=e=>{const b=e.target.closest('button');if(b)play(+b.dataset.n)};
+$('sq').oninput=drawL;$('qnext').onclick=()=>play(cur+1);$('qprev').onclick=()=>play(cur-1);
+au.onended=()=>play(cur+1);
+au.onerror=()=>{if(cur)msg(navigator.onLine?'تعذّر تشغيل التلاوة الآن. جرّب مرة أخرى بعد قليل.':'لا يوجد إنترنت الآن. التلاوة تحتاج اتصالًا.')};
+drawR();drawL();})();
  window.__ready=true;hideBoot()})();
 </script></body></html>
