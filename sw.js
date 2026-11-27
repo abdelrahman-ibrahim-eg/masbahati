@@ -1,4 +1,4 @@
-const V='tasbih-v60b';const FILES=['./adhkar.json','./','./manifest.json','./icon.svg','./icon-192.png','./icon-512.png','./icon-maskable-512.png'];const BIG=['./quran.json','./AmiriQuran.ttf'];
+const V='tasbih-v60c';const FILES=['./adhkar.json','./','./manifest.json','./icon.svg','./icon-192.png','./icon-512.png','./icon-maskable-512.png'];const BIG=['./quran.json','./AmiriQuran.ttf'];
 function ok(f,r){if(!r.ok)return false;const t=r.headers.get('content-type')||'';return f!=='./'||t.indexOf('text/html')===0}
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>Promise.all(FILES.map(f=>fetch(new Request(f,{cache:'reload'})).then(r=>{if(!ok(f,r))throw new Error('bad '+f);return c.put(f,r)}))).then(()=>Promise.all(BIG.map(f=>fetch(new Request(f,{cache:'reload'})).then(r=>{if(r.ok)return c.put(f,r)}).catch(()=>{}))))).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==V).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});

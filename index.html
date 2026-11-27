@@ -168,6 +168,7 @@ input[type=search],#dtext,#dn{background:var(--bg);color:var(--ink);border:1px s
 <main>
 <div class="wn" id="wn" role="dialog" aria-modal="true" aria-labelledby="wnt"><div class="wnbox"><h2 id="wnt">ما الجديد</h2><div class="wv" id="wnv"></div><div id="wnl"></div><button class="btn gold" id="wnok" type="button">تمام، فهمت</button></div></div>
 <div class="wn ig" id="ig" role="dialog" aria-modal="true" aria-labelledby="igt"><div class="wnbox"><h2 id="igt">ثبّت مسبحتي على جهازك</h2><div class="wv">مرة واحدة، وبعدها تفتحها من الشاشة الرئيسية وتشتغل بدون إنترنت.</div><button class="btn gold" id="igin" type="button" style="display:none;width:100%;margin-bottom:6px">تثبيت الآن</button><div class="igtabs"><button type="button" id="igta" class="on">أندرويد (Chrome)</button><button type="button" id="igti">آيفون (Safari)</button></div><div id="igb"></div><button class="btn gold igx" id="igok" type="button" style="width:100%">تمام، فهمت</button></div></div>
+<div class="wn" id="rzm" role="alertdialog" aria-modal="true" aria-labelledby="rzt"><div class="wnbox"><h2 id="rzt" style="color:var(--ink)">مسح الإنجازات وبدء من جديد؟</h2><p style="margin:8px 0"><b>سيُمسح نهائيًا:</b></p><ul style="margin:0 0 8px;padding-inline-start:20px;line-height:1.8"><li>سجل كل الأيام: التسبيحات، الأذكار، صفحات القرآن المقروءة، ووقت الاستماع</li><li>عدّاد «الملتزم» وأطول سلاسلك والأوسمة</li><li>كل الإجماليات والإحصاءات في هذا التبويب</li></ul><p style="margin:8px 0"><b>سيبقى كما هو:</b></p><ul style="margin:0 0 8px;padding-inline-start:20px;line-height:1.8"><li>أهدافك اليومية وإعداداتك</li><li>علامات المصحف ومكان وقوفك وأذكارك المضافة ومفضلتك</li></ul><p class="mut" style="margin:8px 0">لا يمكن التراجع بعد التأكيد، إلا باستعادة نسخة احتياطية أخذتها قبل ذلك.</p><button class="btn" id="rzbk" type="button" style="width:100%;margin-bottom:8px">تنزيل نسخة احتياطية أولاً</button><div class="btns"><button class="btn danger" id="rzyes" type="button">نعم، امسح وابدأ من جديد</button><button class="btn gold" id="rzno" type="button">إلغاء</button></div></div></div>
 <div id="banners"></div><div id="updbox"></div>
 <section id="s-tasbih" class="on">
  <div class="dcard"><button class="arrow" id="prev" type="button" aria-label="السابق">›</button><div class="dmid"><div class="phrase" id="phrase"></div><button class="link" id="pick" type="button">كل الأذكار ▾</button></div><button class="arrow" id="next" type="button" aria-label="التالي">‹</button></div>
@@ -198,7 +199,8 @@ input[type=search],#dtext,#dn{background:var(--bg);color:var(--ink);border:1px s
   <div class="mut" id="lt"></div><div class="bar"><i id="lb" style="width:0"></i></div>
   <div class="kv"><div><b id="lbest">0</b>أطول سلسلة</div><div><b id="lall">0</b>إجمالي الاستماع</div><div><b id="lweek">0</b>آخر 7 أيام</div></div></div>
  <div class="card"><div class="mut">هدفك اليومي (عدد التسبيحات)</div><div class="row"><input type="number" id="dgoal" min="1" max="100000"><button class="btn" id="savedg" type="button">حفظ</button></div><p class="mut">هدف الصفحات اليومية يتغيّر من تبويب الورد.</p></div>
-</section>
+  <div class="card"><b>ابدأ من جديد</b><p class="mut">لو تريد مسح إنجازاتك وبدء صفحة جديدة، ستظهر لك رسالة تأكيد توضّح ما سيُمسح.</p><button class="btn danger" id="rzopen" type="button" style="width:100%">مسح الإنجازات وبدء من جديد</button></div>
+ </section>
 <section id="s-wird">
  <div class="card qcard"><b>المصحف الشريف</b><div class="qs" id="qs"></div><div class="row"><button class="btn gold" id="qcont" type="button">تابع القراءة</button><button class="btn" id="qidx" type="button">فهرس المصحف</button></div><div class="mut" id="qoff" style="margin-top:8px"></div></div>
  <div class="card"><div class="mut">وردك اليوم (صفحات)</div><div class="big" id="wp" dir="ltr" style="text-align:right">0 / 0</div><div class="bar"><i id="wbar" style="width:0"></i></div>
@@ -278,6 +280,13 @@ function igBoot(firstRun){
  $('igin').onclick=async()=>{if(!igPrompt)return;try{igPrompt.prompt();await igPrompt.userChoice}catch(e){}igPrompt=null;igClose()};
  if(igIsApp()){lsSet('igdone','1');return}
  if(firstRun&&!lsGet('igdone'))setTimeout(()=>{if(!$('wn').classList.contains('open'))igOpen()},3500)}
+
+function rzClear(){return new Promise(res=>{const tx=db.transaction('events','readwrite');tx.objectStore('events').clear();tx.oncomplete=()=>res(true);tx.onerror=tx.onabort=()=>res(false)})}
+$('rzopen').onclick=()=>$('rzm').classList.add('open');
+$('rzno').onclick=()=>$('rzm').classList.remove('open');
+$('rzm').onclick=e=>{if(e.target===$('rzm'))$('rzm').classList.remove('open')};
+$('rzbk').onclick=()=>$('dl').click();
+$('rzyes').onclick=async()=>{const ok=await rzClear();$('rzm').classList.remove('open');if(!ok){toast('تعذّر المسح. حاول مرة أخرى.');return}events.clear();render();stats();toast('تم المسح. بدأت صفحة جديدة.')};
 function allDhikr(){return DHIKR.concat(mv('custom',[]))}
 function open(){return new Promise((res,rej)=>{const r=indexedDB.open('tasbih',1);
  r.onupgradeneeded=()=>{const d=r.result;d.createObjectStore('events',{keyPath:'id'});d.createObjectStore('meta',{keyPath:'k'})};
