@@ -21,5 +21,8 @@ Live: https://masbahati-offline.pages.dev
 ## Run
 Serve the folder over HTTPS or localhost, for example `python3 -m http.server`, and open it.
 
+## Sources and licenses
+See SOURCES.md. Quran text CC BY 3.0 (Tanzil), adhkar CC BY 4.0 (OpenDua) and MIT (Seen Arabic). Human review is still needed.
+
 ## License
 Not chosen yet.
