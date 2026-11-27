@@ -49,6 +49,7 @@ svg.ring{position:absolute;inset:0;transform:rotate(-90deg)}
 .mut{color:var(--mut);font-size:13px}
 .big{font-size:32px;color:var(--gold);font-weight:700;line-height:1.3}
 input[type=number],input[type=time]{background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:9px;font-size:16px;width:140px;font-family:inherit}
+.ig .wnbox{border-color:var(--teal)}.igtabs{display:flex;gap:6px;margin:8px 0}.igtabs button{flex:1;padding:8px;border-radius:12px;border:1px solid var(--line);background:var(--card2);color:var(--mut);font-family:inherit;font-size:13.5px}.igtabs button.on{border-color:var(--gold);color:var(--gold);font-weight:700}.igs{display:flex;gap:10px;align-items:flex-start;margin:12px 0}.igs>b{flex:none;width:26px;height:26px;border-radius:50%;background:var(--gold);color:var(--bg);display:flex;align-items:center;justify-content:center;font-size:14px}.igs p{margin:0 0 6px;font-size:14px;line-height:1.7}.igs svg{width:100%;height:auto;display:block;border-radius:12px;border:1px solid var(--line);background:var(--bg)}.ig .igx{margin-top:6px}
 .wn{position:fixed;inset:0;background:#000a;display:none;align-items:center;justify-content:center;z-index:40;padding:16px}.wn.open{display:flex}
 .wnbox{width:100%;max-width:420px;max-height:84vh;overflow:auto;background:var(--card);color:var(--ink);border:1px solid var(--gold);border-radius:22px;padding:18px 16px;box-shadow:var(--shadow)}
 .wnbox h2{margin:0 0 4px;font-size:19px;color:var(--gold)}.wnbox .wv{color:var(--mut);font-size:12.5px;margin-bottom:10px}
@@ -101,14 +102,14 @@ input[type=search],#dtext,#dn{background:var(--bg);color:var(--ink);border:1px s
 .dbody{overflow-y:auto;padding:12px 14px 28px;flex:1}
 .focus #menu{display:none}
 .pv{white-space:nowrap}
-.rcl{display:flex;gap:8px;margin:10px 0}.rcl .chip{flex:1;text-align:center}
+.rcl{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.rcl .chip{flex:1 1 auto;text-align:center}
 .sq{width:100%;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:10px;font-size:15px;font-family:inherit;margin:8px 0}
 .sl{max-height:46vh;overflow:auto}.sl button{display:flex;gap:10px;align-items:center;width:100%;background:none;border:0;border-bottom:1px solid var(--line);color:var(--ink);font-family:inherit;font-size:16px;padding:11px 4px;text-align:right}
 .sl button b{color:var(--gold);min-width:28px;font-size:13px}.sl button.on{color:var(--gold);font-weight:700}
 .pl{position:sticky;bottom:84px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px;margin:10px 0;box-shadow:var(--shadow)}
 .pl audio{width:100%;margin-top:8px}.pl .row{margin-top:6px}
 .sl .sr{display:flex;align-items:center;border-bottom:1px solid var(--line)}.sl .sr button{border:0}.sl .sr .sn{flex:1;min-width:0}.sl .sr .dl{flex:none;width:auto;min-width:78px;justify-content:center;font-size:13px;color:var(--teal);padding:11px 8px}.sl .sr .dl.ok{color:var(--gold)}
-.qrow{display:flex;gap:8px;align-items:center;margin:6px 0}.qrow b{font-size:13px;color:var(--mut);font-weight:400}.qrow .chip{padding:7px 12px;font-size:13px}.qrow .chip[disabled]{opacity:.45}
+.qrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0}.qrow b{font-size:13px;color:var(--mut);font-weight:400}.qrow .chip{padding:7px 12px;font-size:13px}.qrow .chip[disabled]{opacity:.45}
 .ad .note{color:var(--teal);font-size:12px}.rhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
 
 @font-face{font-family:QuranFont;src:url(AmiriQuran.ttf) format("truetype");font-display:swap}
@@ -162,9 +163,11 @@ input[type=search],#dtext,#dn{background:var(--bg);color:var(--ink);border:1px s
  <div id="shpanel" class="kv" style="margin-top:10px"><div><b id="shn">—</b>فتحوا التطبيق عبر رابطك</div></div><div class="mut" id="shts" style="margin-top:4px"></div>
  <button class="btn" id="shtog" type="button" style="margin-top:10px">إيقاف العدّاد</button>
  <p class="mut" style="font-size:11.5px;line-height:1.7">الخصوصية: العدّاد يرسل رمزًا عشوائيًا مجهولًا فقط عندما يفتح شخص جديد التطبيق من رابطك. لا اسم ولا رقم ولا موقع. يُستخدم تجزئة يومية لعنوان الشبكة لمنع التلاعب ولا يُحفظ العنوان نفسه. الرقم تقريبي ويعدّ الأجهزة لا الأشخاص. باقي التطبيق يعمل أوفلاين كما هو. لو أوقفت العدّاد يصبح رابطك رابطًا عاديًا بلا رمز.</p></div>
+<div class="card"><b>تثبيت التطبيق</b><p class="mut">ثبّت مسبحتي على الشاشة الرئيسية لتفتحها كأي تطبيق وتعمل بدون إنترنت.</p><button class="btn gold" id="igopen" type="button" style="width:100%">طريقة التثبيت بالصور</button></div>
 <div class="card"><b>رأيك يهمني</b><p class="mut">عندك اقتراح أو مشكلة أو فكرة لتحسين مسبحتي؟ راسلني مباشرة على واتساب، أو اكتب رأيك في صفحة GitHub (يلزم حساب مجاني).</p><div class="btns"><a class="btn gold" id="fb" href="https://github.com/abdelrahman-ibrahim-eg/masbahati/issues/new?title=%D8%B1%D8%A3%D9%8A%D9%8A%20%D9%81%D9%8A%20%D9%85%D8%B3%D8%A8%D8%AD%D8%AA%D9%8A" target="_blank" rel="noopener" style="text-decoration:none;text-align:center">اكتب رأيك على GitHub</a><a class="btn gold" id="fbw" href="https://wa.me/201092904828" target="_blank" rel="noopener" style="text-decoration:none;text-align:center">راسلني على واتساب</a></div></div></div></aside>
 <main>
 <div class="wn" id="wn" role="dialog" aria-modal="true" aria-labelledby="wnt"><div class="wnbox"><h2 id="wnt">ما الجديد</h2><div class="wv" id="wnv"></div><div id="wnl"></div><button class="btn gold" id="wnok" type="button">تمام، فهمت</button></div></div>
+<div class="wn ig" id="ig" role="dialog" aria-modal="true" aria-labelledby="igt"><div class="wnbox"><h2 id="igt">ثبّت مسبحتي على جهازك</h2><div class="wv">مرة واحدة، وبعدها تفتحها من الشاشة الرئيسية وتشتغل بدون إنترنت.</div><button class="btn gold" id="igin" type="button" style="display:none;width:100%;margin-bottom:6px">تثبيت الآن</button><div class="igtabs"><button type="button" id="igta" class="on">أندرويد (Chrome)</button><button type="button" id="igti">آيفون (Safari)</button></div><div id="igb"></div><button class="btn gold igx" id="igok" type="button" style="width:100%">تمام، فهمت</button></div></div>
 <div id="banners"></div><div id="updbox"></div>
 <section id="s-tasbih" class="on">
  <div class="dcard"><button class="arrow" id="prev" type="button" aria-label="السابق">›</button><div class="dmid"><div class="phrase" id="phrase"></div><button class="link" id="pick" type="button">كل الأذكار ▾</button></div><button class="arrow" id="next" type="button" aria-label="التالي">‹</button></div>
@@ -213,7 +216,7 @@ input[type=search],#dtext,#dn{background:var(--bg);color:var(--ink);border:1px s
 </section>
 <section id="s-quran">
  <div class="banner">التلاوة بث مباشر وتحتاج إنترنت، إلا السور التي تنزّلها على جهازك فتسمعها أوفلاين. باقي المسبحة تعمل أوفلاين كالمعتاد.</div>
- <div class="rcl" id="rcl"></div><div class="qrow"><b>جودة الصوت:</b><span id="qcl"></span></div><div class="mut" id="qinfo"></div><div class="mut" id="dlinfo" style="margin-top:4px"></div>
+ <div class="rcl" id="rcl"></div><div class="qrow"><b>جودة الصوت:</b><span id="qcl"></span></div><div class="qrow"><b>تكرار السورة:</b><span id="rpl"></span></div><div class="mut" id="qinfo"></div><div class="mut" id="dlinfo" style="margin-top:4px"></div>
  <input class="sq" id="sq" type="search" placeholder="ابحث عن سورة" autocomplete="off">
  <div class="pl"><div id="pt" class="mut">اختر سورة للاستماع</div><audio id="au" controls preload="none"></audio>
  <div class="row"><button class="btn" id="qprev" type="button">السورة السابقة</button><button class="btn" id="qnext" type="button">السورة التالية</button></div>
@@ -251,6 +254,30 @@ function whatsNew(firstRun){const seen=lsGet('tasbih-seen');
  const w=$('wn');const close=()=>{lsSet('tasbih-seen',VER);w.classList.remove('open')};
  $('wnok').onclick=close;w.onclick=e=>{if(e.target===w)close()};
  setTimeout(()=>w.classList.add('open'),2000)}
+
+const IGW='<svg viewBox="0 0 320 150" xmlns="http://www.w3.org/2000/svg" direction="ltr" font-family="system-ui,Arial,sans-serif">';
+const IGT=(x,y,t,c,sz,a)=>'<text x="'+x+'" y="'+y+'" fill="'+(c||'currentColor')+'" font-size="'+(sz||13)+'" text-anchor="'+(a||'start')+'">'+t+'</text>';
+const IGIMG={
+a1:IGW+'<rect x="10" y="10" width="300" height="38" rx="19" fill="#8883"/>'+IGT(30,34,'masbahati-offline.pages.dev','#999',12)+'<circle cx="289" cy="29" r="19" fill="none" stroke="#e3bd62" stroke-width="3"/><circle cx="289" cy="21" r="2.6" fill="#e3bd62"/><circle cx="289" cy="29" r="2.6" fill="#e3bd62"/><circle cx="289" cy="37" r="2.6" fill="#e3bd62"/><path d="M262 70 Q272 60 282 56" stroke="#e3bd62" stroke-width="3" fill="none"/><path d="M276 54 L284 55 L281 63" stroke="#e3bd62" stroke-width="3" fill="none"/>'+IGT(160,95,'الثلاث نقاط أعلى المتصفح','#e3bd62',15,'middle')+'</svg>',
+a2:IGW+'<rect x="150" y="6" width="164" height="138" rx="12" fill="#8883"/>'+IGT(166,32,'New tab','#999',12)+IGT(166,56,'History','#999',12)+'<rect x="154" y="68" width="156" height="30" rx="8" fill="#e3bd6233" stroke="#e3bd62" stroke-width="2.5"/>'+IGT(166,88,'Install app','#e3bd62',13)+IGT(166,120,'Add to Home screen','#e3bd62',12)+IGT(72,78,'اختر «تثبيت','#e3bd62',12,'middle')+IGT(72,94,'التطبيق»','#e3bd62',12,'middle')+IGT(72,114,'أو «إضافة للرئيسية»','#e3bd62',10,'middle')+'</svg>',
+a3:IGW+'<rect x="50" y="22" width="220" height="106" rx="14" fill="#8883"/>'+IGT(160,52,'Install app?','currentColor',14,'middle')+IGT(160,74,'Masbahati','#999',12,'middle')+'<rect x="72" y="92" width="80" height="28" rx="14" fill="none" stroke="#999" stroke-width="1.5"/>'+IGT(112,111,'Cancel','#999',12,'middle')+'<rect x="168" y="92" width="86" height="28" rx="14" fill="#e3bd62"/>'+IGT(211,111,'Install','#0b1a21',13,'middle')+'<circle cx="211" cy="106" r="22" fill="none" stroke="#e3bd62" stroke-width="2.5" opacity=".7"/></svg>',
+i1:IGW+'<rect x="0" y="104" width="320" height="46" fill="#8883"/><g transform="translate(160 127)"><rect x="-8" y="-4" width="16" height="14" rx="2" fill="none" stroke="#e3bd62" stroke-width="2.5"/><path d="M0 -14 V4 M-5 -9 L0 -15 L5 -9" stroke="#e3bd62" stroke-width="2.5" fill="none"/><circle r="22" fill="none" stroke="#e3bd62" stroke-width="3"/></g>'+IGT(160,50,'زر المشاركة في أسفل Safari','#e3bd62',15,'middle')+'<path d="M160 64 V94" stroke="#e3bd62" stroke-width="3"/><path d="M153 86 L160 96 L167 86" stroke="#e3bd62" stroke-width="3" fill="none"/></svg>',
+i2:IGW+'<rect x="40" y="8" width="240" height="134" rx="14" fill="#8883"/>'+IGT(56,34,'Copy','#999',12)+IGT(56,56,'Add Bookmark','#999',12)+'<rect x="44" y="68" width="232" height="32" rx="8" fill="#e3bd6233" stroke="#e3bd62" stroke-width="2.5"/>'+IGT(56,89,'Add to Home Screen','#e3bd62',13)+IGT(160,124,'اختر «إضافة إلى الشاشة الرئيسية»','#e3bd62',13,'middle')+'</svg>',
+i3:IGW+'<rect x="40" y="14" width="240" height="122" rx="14" fill="#8883"/>'+IGT(160,44,'Add to Home Screen','currentColor',14,'middle')+'<rect x="60" y="58" width="36" height="36" rx="9" fill="#47c2aa"/>'+IGT(108,80,'Masbahati','currentColor',13)+'<rect x="196" y="104" width="68" height="26" rx="13" fill="#e3bd62"/>'+IGT(230,122,'Add','#0b1a21',13,'middle')+'<circle cx="230" cy="117" r="21" fill="none" stroke="#e3bd62" stroke-width="2.5" opacity=".7"/></svg>'};
+const IGSTEPS={a:[['افتح القائمة: اضغط على الثلاث نقاط أعلى المتصفح.','a1'],['اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».','a2'],['اضغط «تثبيت». ستجد مسبحتي في شاشتك الرئيسية.','a3']],i:[['افتح الموقع من Safari، واضغط زر المشاركة أسفل الشاشة.','i1'],['مرّر القائمة واختر «إضافة إلى الشاشة الرئيسية».','i2'],['اضغط «إضافة». ستجد مسبحتي في شاشتك الرئيسية.','i3']]};
+let igPrompt=null;
+function igIsApp(){try{return matchMedia('(display-mode: standalone)').matches||navigator.standalone===true||/; wv\)/.test(navigator.userAgent)}catch(e){return false}}
+function igTab(k){$('igta').classList.toggle('on',k==='a');$('igti').classList.toggle('on',k==='i');$('igb').innerHTML=IGSTEPS[k].map((s,n)=>'<div class="igs"><b>'+(n+1)+'</b><div style="flex:1;min-width:0"><p>'+s[0]+'</p>'+IGIMG[s[1]]+'</div></div>').join('')}
+function igOpen(){igTab(/iphone|ipad|ipod/i.test(navigator.userAgent)?'i':'a');$('igin').style.display=igPrompt?'block':'none';$('ig').classList.add('open')}
+function igClose(){lsSet('igdone','1');$('ig').classList.remove('open')}
+function igBoot(firstRun){
+ window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();igPrompt=e;$('igin').style.display=$('ig').classList.contains('open')?'block':'none'});
+ window.addEventListener('appinstalled',()=>{lsSet('igdone','1');$('ig').classList.remove('open')});
+ $('igta').onclick=()=>igTab('a');$('igti').onclick=()=>igTab('i');$('igok').onclick=igClose;$('ig').onclick=e=>{if(e.target===$('ig'))igClose()};
+ $('igopen').onclick=()=>{dr(false);setTimeout(igOpen,250)};
+ $('igin').onclick=async()=>{if(!igPrompt)return;try{igPrompt.prompt();await igPrompt.userChoice}catch(e){}igPrompt=null;igClose()};
+ if(igIsApp()){lsSet('igdone','1');return}
+ if(firstRun&&!lsGet('igdone'))setTimeout(()=>{if(!$('wn').classList.contains('open'))igOpen()},3500)}
 function allDhikr(){return DHIKR.concat(mv('custom',[]))}
 function open(){return new Promise((res,rej)=>{const r=indexedDB.open('tasbih',1);
  r.onupgradeneeded=()=>{const d=r.result;d.createObjectStore('events',{keyPath:'id'});d.createObjectStore('meta',{keyPath:'k'})};
@@ -495,7 +522,7 @@ $('menu').addEventListener('click',()=>{shRender();shFetch()});
 (async()=>{net();
  db=await open();for(const e of await all('events'))events.set(e.id,e);for(const m of await all('meta'))meta[m.k]=m;
  device=mv('device',null);const firstRun=!device;if(!device){device='d'+Math.random().toString(36).slice(2,10);setMeta('device',device)}
- whatsNew(firstRun);shBoot(firstRun);cur=mv('cur','sub');vibOn=mv('vib',true);autoOn=mv('auto',false);applyTheme();render();showPend();
+ whatsNew(firstRun);shBoot(firstRun);igBoot(firstRun);cur=mv('cur','sub');vibOn=mv('vib',true);autoOn=mv('auto',false);applyTheme();render();showPend();
  let st='';try{if(navigator.storage&&navigator.storage.persist){const ok=await navigator.storage.persist();st=ok?'التخزين محمي من المسح التلقائي':'التخزين غير محمي: المتصفح قد يمسحه عند امتلاء المساحة. خذ نسخة احتياطية.'}else st='حالة الحماية غير معروفة'}catch(x){st='حالة الحماية غير معروفة'}
  $('store').textContent=st;
  if('serviceWorker' in navigator&&location.protocol.startsWith('http')){const had=!!navigator.serviceWorker.controller;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had)$('updbox').innerHTML='<div class="upd"><div>تتوفر نسخة جديدة من التطبيق. اضغط إعادة التحميل لتفعيلها.</div><button class="btn gold" type="button" onclick="location.reload()">إعادة التحميل</button></div>'});navigator.serviceWorker.register('sw.js').catch(()=>{});}
@@ -503,9 +530,9 @@ $('menu').addEventListener('click',()=>{shRender();shFetch()});
 
 (function(){const N=["الفاتحة", "البقرة", "آل عمران", "النساء", "المائدة", "الأنعام", "الأعراف", "الأنفال", "التوبة", "يونس", "هود", "يوسف", "الرعد", "إبراهيم", "الحجر", "النحل", "الإسراء", "الكهف", "مريم", "طه", "الأنبياء", "الحج", "المؤمنون", "النور", "الفرقان", "الشعراء", "النمل", "القصص", "العنكبوت", "الروم", "لقمان", "السجدة", "الأحزاب", "سبأ", "فاطر", "يس", "الصافات", "ص", "الزمر", "غافر", "فصلت", "الشورى", "الزخرف", "الدّخان", "الجاثية", "الأحقاف", "محمد", "الفتح", "الحجرات", "ق", "الذاريات", "الطور", "النجم", "القمر", "الرحمن", "الواقعة", "الحديد", "المجادلة", "الحشر", "الممتحنة", "الصف", "الجمعة", "المنافقون", "التغابن", "الطلاق", "التحريم", "الملك", "القلم", "الحاقة", "المعارج", "نوح", "الجن", "المزمل", "المدثر", "القيامة", "الإنسان", "المرسلات", "النبأ", "النازعات", "عبس", "التكوير", "الإنفطار", "المطففين", "الإنشقاق", "البروج", "الطارق", "الأعلى", "الغاشية", "الفجر", "البلد", "الشمس", "الليل", "الضحى", "الشرح", "التين", "العلق", "القدر", "البينة", "الزلزلة", "العاديات", "القارعة", "التكاثر", "العصر", "الهمزة", "الفيل", "قريش", "الماعون", "الكوثر", "الكافرون", "النصر", "المسد", "الإخلاص", "الفلق", "الناس"];
 const AY=[7, 286, 200, 176, 120, 165, 206, 75, 129, 109, 123, 111, 43, 52, 99, 128, 111, 110, 98, 135, 112, 78, 118, 64, 77, 227, 93, 88, 69, 60, 34, 30, 73, 54, 45, 83, 182, 88, 75, 85, 54, 53, 89, 59, 37, 35, 38, 29, 18, 45, 60, 49, 62, 55, 78, 96, 29, 22, 24, 13, 14, 11, 11, 18, 12, 12, 30, 52, 52, 44, 28, 28, 20, 56, 40, 31, 50, 40, 46, 42, 29, 19, 36, 25, 22, 17, 19, 26, 30, 20, 15, 21, 11, 8, 8, 19, 5, 8, 8, 11, 11, 8, 3, 9, 5, 4, 7, 3, 6, 3, 5, 4, 5, 6];
-const R=[{k:'y',n:'ياسر الدوسري',u:'https://cdn.mp3quran.net/audio/yasser-dosari/r1/'},{k:'h',n:'محمود خليل الحصري',u:'https://cdn.mp3quran.net/audio/mahmoud-husary/r1/',lo:'Husary_64kbps'}];
-let ri=0,qi=0,cur=0,chain=null,objU=null,dlJob=null,have={},adb=null;
-try{ri=Math.min(1,Math.max(0,+localStorage.getItem('tasbih-reciter')||0));qi=localStorage.getItem('tasbih-quality')==='lo'?1:0}catch(x){}
+const R=[{k:'y',n:'ياسر الدوسري',u:'https://cdn.mp3quran.net/audio/yasser-dosari/r1/'},{k:'h',n:'محمود خليل الحصري',u:'https://cdn.mp3quran.net/audio/mahmoud-husary/r1/',lo:'Husary_64kbps'},{k:'nu',n:'أحمد النفيس',u:'https://cdn.mp3quran.net/audio/ahmad-nufais/r1/'},{k:'qa',n:'ناصر القطامي',u:'https://cdn.mp3quran.net/audio/nasser-qatami/r1/'},{k:'mi',n:'محمد صديق المنشاوي',u:'https://cdn.mp3quran.net/audio/muhammad-minshawi/r1/'},{k:'ab',n:'عبدالباسط عبدالصمد',u:'https://cdn.mp3quran.net/audio/abdulbasit-abdulsamad/r3/'},{k:'is',n:'إسلام صبحي',u:'https://cdn.mp3quran.net/audio/islam-sobhi/r1/',miss:[37,39,40,45,65]},{k:'na',n:'أحمد نعينع',u:'https://cdn.mp3quran.net/audio/ahmad-naina/r1/'},{k:'sh',n:'سعود الشريم',u:'https://cdn.mp3quran.net/audio/saud-shuraim/r1/'},{k:'ma',n:'ماهر المعيقلي',u:'https://cdn.mp3quran.net/audio/maher-muaiqly/r1/'}];
+let rp=0,rl=0,ri=0,qi=0,cur=0,chain=null,objU=null,dlJob=null,have={},adb=null;
+try{ri=Math.min(R.length-1,Math.max(0,+localStorage.getItem('tasbih-reciter')||0));qi=localStorage.getItem('tasbih-quality')==='lo'?1:0;rp=[0,2,3,5,-1].includes(+localStorage.getItem('tasbih-rep'))?+localStorage.getItem('tasbih-rep'):0}catch(x){}
 const au=$('au'),msg=t=>$('qmsg').textContent=t||'';
 const mb=b=>(b/1048576).toFixed(b>=10485760?0:1)+' ميجا';
 const q=()=>(qi===1&&R[ri].lo)?'lo':'hi';
@@ -520,6 +547,9 @@ async function adel(k){const d=await aopen();return new Promise((res,rej)=>{cons
 async function scan(){have={};try{const d=await aopen();await new Promise(res=>{const r=d.transaction('a').objectStore('a').openCursor();r.onsuccess=()=>{const c=r.result;if(c){have[c.key]=c.value.s||0;c.continue()}else res()};r.onerror=()=>res()})}catch(x){}drawL();info()}
 function info(){const ks=Object.keys(have),tot=ks.reduce((a,k)=>a+have[k],0);$('dlinfo').innerHTML=ks.length?'المحمّل على جهازك: '+ks.length+' سورة ('+mb(tot)+') <button class="link" id="dlall" type="button">حذف الكل</button>':'لا توجد سور محمّلة. زر التنزيل بجانب كل سورة.';
  $('qinfo').textContent=R[ri].lo?(q()==='lo'?'الموفّرة: حوالي 64 كيلوبت، تستهلك نحو 29 ميجا في الساعة تقريبًا.':'العالية: حوالي 128 كيلوبت، تستهلك نحو 58 ميجا في الساعة تقريبًا.'):'هذا القارئ متوفر بجودة واحدة (حوالي 128 كيلوبت).'}
+const RPV=[[0,'بدون'],[2,'مرتان'],[3,'3 مرات'],[5,'5 مرات'],[-1,'بلا توقف']];
+function drawP(){$('rpl').innerHTML=RPV.map(a=>'<button type="button" class="chip'+(a[0]===rp?' on':'')+'" data-r="'+a[0]+'">'+a[1]+'</button>').join(' ')}
+function repMsg(){msg(rp===0?'':rp===-1?'التكرار: السورة تُعاد بلا توقف.':'التكرار: المرة '+(rp-rl+1)+' من '+rp)}
 function drawR(){$('rcl').innerHTML=R.map((r,i)=>'<button type="button" class="chip'+(i===ri?' on':'')+'" data-i="'+i+'">'+r.n+'</button>').join('');
  $('qcl').innerHTML='<button type="button" class="chip'+(q()==='hi'?' on':'')+'" data-q="0">عالية</button> <button type="button" class="chip'+(q()==='lo'?' on':'')+'" data-q="1"'+(R[ri].lo?'':' disabled')+'>موفّرة للنت</button>'}
 function dlLabel(n){if(dlJob&&dlJob.n===n)return dlJob.pct+'% ✕';return have[key(n)]!=null?'✓ محمّلة':'⬇ تنزيل'}
@@ -531,6 +561,7 @@ async function dlAyahs(n,sig){const nm=ayNames(n),out=new Array(nm.length);let n
  async function w(){while(nx<nm.length){const i=nx++;const r=await fetch(ayUrl(nm[i]),{signal:sig});if(!r.ok)throw 0;out[i]=await r.arrayBuffer();dn++;dlJob.pct=Math.floor(100*dn/nm.length);prog()}}
  await Promise.all([w(),w(),w(),w()]);return new Blob(out,{type:'audio/mpeg'})}
 async function download(n){
+ if(miss(n)){msg('هذه السورة غير متوفرة بصوت هذا القارئ.');return}
  if(dlJob){if(dlJob.n===n)dlJob.ctl.abort();else msg('يوجد تنزيل جارٍ. انتظر انتهاءه أو اضغط عليه للإلغاء.');return}
  const k=key(n);
  if(have[k]!=null){if(confirm('حذف سورة '+N[n-1]+' من جهازك؟')){await adel(k);delete have[k];drawL();info();msg('تم حذف التنزيل')}return}
@@ -542,23 +573,26 @@ async function download(n){
  dlJob=null;drawL();info()}
 function label(extra){$('pt').textContent='سورة '+N[cur-1]+' - '+R[ri].n+(extra?' ('+extra+')':'')}
 function chainGo(){const c=chain;au.src=ayUrl(c.nm[c.i]);label('جودة موفّرة، الجزء '+(c.i+1)+' من '+c.nm.length);au.play().catch(()=>{})}
-async function play(n,auto){if(auto===undefined)auto=true;if(n<1||n>114)return;cur=n;chain=null;if(objU){URL.revokeObjectURL(objU);objU=null}
+const miss=n=>!!(R[ri].miss&&R[ri].miss.includes(n));
+const nx=(n,d)=>{n+=d;while(n>=1&&n<=114&&miss(n))n+=d;return n};
+async function play(n,auto,keep){if(auto===undefined)auto=true;if(n<1||n>114)return;if(miss(n)){cur=n;chain=null;au.pause();au.removeAttribute('src');au.load();label();msg('هذه السورة غير متوفرة بصوت هذا القارئ في المصدر. اختر قارئًا آخر أو السورة التالية.');drawL();return}if(!keep)rl=rp>0?rp:0;cur=n;chain=null;if(objU){URL.revokeObjectURL(objU);objU=null}
  let rec=null;try{rec=await aget(key(n))}catch(x){}
  if(cur!==n)return;
- if(rec&&rec.b){objU=URL.createObjectURL(rec.b);au.src=objU;label('محمّلة على جهازك');msg('');if(auto)au.play().catch(()=>{})}
+ if(rec&&rec.b){objU=URL.createObjectURL(rec.b);au.src=objU;label('محمّلة على جهازك');repMsg();if(auto)au.play().catch(()=>{})}
  else if(!navigator.onLine){au.removeAttribute('src');au.load();label();msg('لا يوجد إنترنت الآن. نزّل السورة قبل ذلك لتسمعها أوفلاين.')}
- else if(q()==='lo'){msg('');chain={nm:ayNames(n),i:0};if(auto)chainGo();else{au.src=ayUrl(chain.nm[0]);label('جودة موفّرة')}}
- else{msg('');au.src=url(n);label();if(auto)au.play().catch(()=>{})}
+ else if(q()==='lo'){repMsg();chain={nm:ayNames(n),i:0};if(auto)chainGo();else{au.src=ayUrl(chain.nm[0]);label('جودة موفّرة')}}
+ else{repMsg();au.src=url(n);label();if(auto)au.play().catch(()=>{})}
  drawL();
- if('mediaSession' in navigator){try{navigator.mediaSession.metadata=new MediaMetadata({title:'سورة '+N[n-1],artist:R[ri].n,album:'مسبحتي'});navigator.mediaSession.setActionHandler('nexttrack',()=>play(cur+1));navigator.mediaSession.setActionHandler('previoustrack',()=>play(cur-1))}catch(x){}}}
+ if('mediaSession' in navigator){try{navigator.mediaSession.metadata=new MediaMetadata({title:'سورة '+N[n-1],artist:R[ri].n,album:'مسبحتي'});navigator.mediaSession.setActionHandler('nexttrack',()=>play(nx(cur,1)));navigator.mediaSession.setActionHandler('previoustrack',()=>play(nx(cur,-1)))}catch(x){}}}
 function reload(){const p=!au.paused;drawR();drawL();info();if(cur)play(cur,p)}
 $('rcl').onclick=e=>{const b=e.target.closest('button');if(!b)return;ri=+b.dataset.i;try{localStorage.setItem('tasbih-reciter',ri)}catch(x){}reload()};
 $('qcl').onclick=e=>{const b=e.target.closest('button');if(!b||b.disabled)return;qi=+b.dataset.q;try{localStorage.setItem('tasbih-quality',qi?'lo':'hi')}catch(x){}reload()};
 $('sl').onclick=e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.d)download(+b.dataset.d);else play(+b.dataset.n)};
 $('dlinfo').onclick=async e=>{if(e.target.id!=='dlall')return;if(!confirm('حذف كل السور المحمّلة من جهازك؟'))return;for(const k of Object.keys(have))await adel(k);have={};drawL();info();msg('تم حذف كل التنزيلات')};
-$('sq').oninput=drawL;$('qnext').onclick=()=>play(cur+1);$('qprev').onclick=()=>play(cur-1);
-au.onended=()=>{if(chain&&chain.i<chain.nm.length-1){chain.i++;chainGo();return}play(cur+1)};
+$('sq').oninput=drawL;$('qnext').onclick=()=>play(nx(cur,1));$('qprev').onclick=()=>play(nx(cur,-1));
+au.onended=()=>{if(chain&&chain.i<chain.nm.length-1){chain.i++;chainGo();return}if(rp===-1){play(cur,true,true);return}if(rp>0&&rl>1){rl--;play(cur,true,true);return}play(nx(cur,1))};
+$('rpl').onclick=e=>{const b=e.target.closest('button');if(!b)return;rp=+b.dataset.r;rl=rp>0?rp:0;try{localStorage.setItem('tasbih-rep',rp)}catch(x){}drawP();repMsg()};
 au.onerror=()=>{if(cur&&au.getAttribute('src'))msg(navigator.onLine?'تعذّر تشغيل التلاوة الآن. جرّب مرة أخرى بعد قليل.':'لا يوجد إنترنت الآن. نزّل السورة قبل ذلك لتسمعها أوفلاين.')};
-drawR();drawL();info();scan();})();
+drawR();drawP();drawL();info();scan();})();
  window.__ready=true;hideBoot()})();
 </script></body></html>
