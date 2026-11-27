@@ -50,6 +50,15 @@ svg.ring{position:absolute;inset:0;transform:rotate(-90deg)}
 .big{font-size:32px;color:var(--gold);font-weight:700;line-height:1.3}
 input[type=number],input[type=time]{background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:9px;font-size:16px;width:140px;font-family:inherit}
 .ig .wnbox{border-color:var(--teal)}.igtabs{display:flex;gap:6px;margin:8px 0}.igtabs button{flex:1;padding:8px;border-radius:12px;border:1px solid var(--line);background:var(--card2);color:var(--mut);font-family:inherit;font-size:13.5px}.igtabs button.on{border-color:var(--gold);color:var(--gold);font-weight:700}.igs{display:flex;gap:10px;align-items:flex-start;margin:12px 0}.igs>b{flex:none;width:26px;height:26px;border-radius:50%;background:var(--gold);color:var(--bg);display:flex;align-items:center;justify-content:center;font-size:14px}.igs p{margin:0 0 6px;font-size:14px;line-height:1.7}.igs svg{width:100%;height:auto;display:block;border-radius:12px;border:1px solid var(--line);background:var(--bg)}.ig .igx{margin-top:6px}
+#bm{position:fixed;inset:0;z-index:35;display:none;flex-direction:column;background:radial-gradient(120% 70% at 50% 100%,var(--bg2),var(--bg));user-select:none;-webkit-user-select:none;touch-action:none}#bm.open{display:flex}
+.bmt{display:flex;align-items:center;gap:8px;padding:calc(10px + env(safe-area-inset-top)) 12px 4px}.bmt .qib{flex:none}.bmt .sp{flex:1}
+.bmd{display:flex;align-items:center;justify-content:center;gap:10px;padding:2px 12px}.bmd .arrow{width:38px;height:38px;font-size:22px}#bmph{flex:1;text-align:center;font-weight:700;color:var(--gold);line-height:1.5;max-height:20vh;overflow:auto;font-size:28px}#bmph.long{font-size:19px}
+#bmbox{margin:8px auto 2px;min-width:92px;padding:6px 22px;border:2px solid var(--gold);border-radius:18px;font-size:46px;font-weight:700;text-align:center;color:var(--ink);box-shadow:0 0 18px var(--glow),inset 0 0 10px var(--glow);font-variant-numeric:tabular-nums}
+#bmbox.pop{animation:bmpop .28s ease-out}@keyframes bmpop{40%{transform:scale(1.12)}}
+#bmmeta{text-align:center;font-size:13px;color:var(--mut);margin:2px 0}#bmbar{height:4px;width:120px;margin:4px auto;background:var(--ringtrack);border-radius:9px;overflow:hidden}#bmbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--gold))}
+#bmhint{text-align:center;color:var(--gold);font-size:15px;margin:6px 0 0;transition:opacity .4s}
+#bmst{flex:1;position:relative;min-height:0}#bmsvg{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+@media (prefers-reduced-motion:reduce){#bmbox.pop{animation:none}}
 .wn{position:fixed;inset:0;background:#000a;display:none;align-items:center;justify-content:center;z-index:40;padding:16px}.wn.open{display:flex}
 .wnbox{width:100%;max-width:420px;max-height:84vh;overflow:auto;background:var(--card);color:var(--ink);border:1px solid var(--gold);border-radius:22px;padding:18px 16px;box-shadow:var(--shadow)}
 .wnbox h2{margin:0 0 4px;font-size:19px;color:var(--gold)}.wnbox .wv{color:var(--mut);font-size:12.5px;margin-bottom:10px}
@@ -169,12 +178,16 @@ input[type=search],#dtext,#dn{background:var(--bg);color:var(--ink);border:1px s
 <div class="wn" id="wn" role="dialog" aria-modal="true" aria-labelledby="wnt"><div class="wnbox"><h2 id="wnt">ما الجديد</h2><div class="wv" id="wnv"></div><div id="wnl"></div><button class="btn gold" id="wnok" type="button">تمام، فهمت</button></div></div>
 <div class="wn ig" id="ig" role="dialog" aria-modal="true" aria-labelledby="igt"><div class="wnbox"><h2 id="igt">ثبّت مسبحتي على جهازك</h2><div class="wv">مرة واحدة، وبعدها تفتحها من الشاشة الرئيسية وتشتغل بدون إنترنت.</div><button class="btn gold" id="igin" type="button" style="display:none;width:100%;margin-bottom:6px">تثبيت الآن</button><div class="igtabs"><button type="button" id="igta" class="on">أندرويد (Chrome)</button><button type="button" id="igti">آيفون (Safari)</button></div><div id="igb"></div><button class="btn gold igx" id="igok" type="button" style="width:100%">تمام، فهمت</button></div></div>
 <div class="wn" id="rzm" role="alertdialog" aria-modal="true" aria-labelledby="rzt"><div class="wnbox"><h2 id="rzt" style="color:var(--ink)">مسح الإنجازات وبدء من جديد؟</h2><p style="margin:8px 0"><b>سيُمسح نهائيًا:</b></p><ul style="margin:0 0 8px;padding-inline-start:20px;line-height:1.8"><li>سجل كل الأيام: التسبيحات، الأذكار، صفحات القرآن المقروءة، ووقت الاستماع</li><li>عدّاد «الملتزم» وأطول سلاسلك والأوسمة</li><li>كل الإجماليات والإحصاءات في هذا التبويب</li></ul><p style="margin:8px 0"><b>سيبقى كما هو:</b></p><ul style="margin:0 0 8px;padding-inline-start:20px;line-height:1.8"><li>أهدافك اليومية وإعداداتك</li><li>علامات المصحف ومكان وقوفك وأذكارك المضافة ومفضلتك</li></ul><p class="mut" style="margin:8px 0">لا يمكن التراجع بعد التأكيد، إلا باستعادة نسخة احتياطية أخذتها قبل ذلك.</p><button class="btn" id="rzbk" type="button" style="width:100%;margin-bottom:8px">تنزيل نسخة احتياطية أولاً</button><div class="btns"><button class="btn danger" id="rzyes" type="button">نعم، امسح وابدأ من جديد</button><button class="btn gold" id="rzno" type="button">إلغاء</button></div></div></div>
+<div id="bm" role="dialog" aria-modal="true" aria-label="وضع الخرزات"><div class="bmt"><button class="qib" id="bmx" type="button" aria-label="إغلاق">✕</button><span class="sp"></span><button class="qib" id="bmundo" type="button" aria-label="تراجع" style="width:auto;padding:0 14px">تراجع</button></div>
+<div class="bmd"><button class="arrow" id="bmprev" type="button" aria-label="السابق">›</button><div id="bmph"></div><button class="arrow" id="bmnext" type="button" aria-label="التالي">‹</button></div>
+<div id="bmbox">0</div><div id="bmmeta"></div><div id="bmbar"><i id="bmbi"></i></div><div id="bmhint">حرّك إصبعك على الخيط من الأسفل إلى الأعلى. أو المس الشاشة لعدّ واحدة.</div>
+<div id="bmst"><svg id="bmsvg" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="bgU" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5fd6bd"/><stop offset="1" stop-color="#1d7a66"/></linearGradient><linearGradient id="bgL" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0b0"/><stop offset="1" stop-color="#d9a92f"/></linearGradient></defs><path id="bmstr" fill="none" stroke="var(--mut)" stroke-width="2" stroke-linecap="round" opacity=".7"/><g id="bmend"><ellipse rx="13" ry="8" fill="var(--card2)" stroke="var(--gold)" stroke-width="1.5"/></g><g id="bmbeads"></g></svg></div></div>
 <div id="banners"></div><div id="updbox"></div>
 <section id="s-tasbih" class="on">
  <div class="dcard"><button class="arrow" id="prev" type="button" aria-label="السابق">›</button><div class="dmid"><div class="phrase" id="phrase"></div><button class="link" id="pick" type="button">كل الأذكار ▾</button></div><button class="arrow" id="next" type="button" aria-label="التالي">‹</button></div>
  <div class="ringwrap"><svg class="ring" viewBox="0 0 100 100"><defs><linearGradient id="gr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#47c2aa"/><stop offset="1" stop-color="#e3bd62"/></linearGradient></defs><circle cx="50" cy="50" r="46" fill="none" stroke="var(--ringtrack)" stroke-width="3.2"/><circle id="arc" cx="50" cy="50" r="46" fill="none" stroke="url(#gr)" stroke-width="3.6" stroke-linecap="round" stroke-dasharray="289" stroke-dashoffset="289" style="transition:stroke-dashoffset .25s"/></svg><button id="tap" type="button">0</button></div>
  <div class="row mut" id="meta"></div><div class="row mut" id="pd"></div>
- <div class="row ctl"><button class="btn" id="undo" type="button">تراجع</button><button class="btn" id="newround" type="button">جولة جديدة</button><button class="btn" id="vib" type="button">اهتزاز: تشغيل</button><button class="btn" id="auto" type="button">تتابع: إيقاف</button><button class="btn" id="focus" type="button">وضع التركيز</button></div>
+ <div class="row ctl"><button class="btn" id="undo" type="button">تراجع</button><button class="btn" id="newround" type="button">جولة جديدة</button><button class="btn" id="vib" type="button">اهتزاز: تشغيل</button><button class="btn" id="auto" type="button">تتابع: إيقاف</button><button class="btn" id="focus" type="button">وضع التركيز</button><button class="btn" id="bmopen" type="button">وضع الخرزات</button></div>
  <button class="btn exitf" id="exitf" type="button">خروج من وضع التركيز</button>
  <div class="card"><div class="mut">اليوم</div><div class="big" id="today">0</div><div class="mut">الإجمالي الكلي: <span id="all">0</span></div>
  <div class="bar"><i id="dbar" style="width:0"></i></div><div class="mut" id="dgtxt"></div></div>
@@ -381,6 +394,50 @@ function count(){const d=allDhikr().find(x=>x.id===cur)||DHIKR[0];addEvent('tap'
  if(done&&autoOn){const i=SEQ.indexOf(cur);if(i>=0&&i<SEQ.length-1){setMeta('base:'+cur,sum('tap',cur));cur=SEQ[i+1];setMeta('cur',cur);setMeta('base:'+cur,sum('tap',cur))}}render()}
 $('tap').onclick=count;
 $('auto').onclick=()=>{autoOn=!autoOn;setMeta('auto',autoOn);render()};
+(function(){
+const NS='http://www.w3.org/2000/svg',SZ=9;let W=0,H=0,P=[],T=[],beads=[],act=null,t=0,tgt=0,drag=false,counted=false,raf=0,anim=null,pid=null,sx=0,sy=0,st0=0,moved=false,lastN=-1;
+const mk=(lit)=>{const g=document.createElementNS(NS,'g'),gl=document.createElementNS(NS,'circle'),e=document.createElementNS(NS,'ellipse'),h=document.createElementNS(NS,'ellipse');gl.setAttribute('r','24');gl.setAttribute('fill','#e3bd62');gl.setAttribute('opacity','0');e.setAttribute('rx','16');e.setAttribute('ry','10');h.setAttribute('rx','8');h.setAttribute('ry','2.4');h.setAttribute('cx','-1');h.setAttribute('cy','-4');h.setAttribute('fill','#fff');h.setAttribute('opacity','.4');g.appendChild(gl);g.appendChild(e);g.appendChild(h);g._e=e;g._g=gl;return g};
+function bez(u){const a=1-u;return[a*a*a*P0[0]+3*a*a*u*P1[0]+3*a*u*u*P2[0]+u*u*u*P3[0],a*a*a*P0[1]+3*a*a*u*P1[1]+3*a*u*u*P2[1]+u*u*u*P3[1]]}
+let P0,P1,P2,P3;
+function geom(){const r=$('bmst').getBoundingClientRect();W=r.width;H=r.height;if(!W||!H)return;$('bmsvg').setAttribute('viewBox','0 0 '+W+' '+H);
+ P0=[W*.26,H*.70];P1=[W*.22,H*.22];P2=[W*.50,H*.02];P3=[W*.86,H*.12];
+ P=[];T=[];for(let i=0;i<=80;i++){const u=i/80,q=bez(u),q2=bez(Math.min(1,u+.01)),q1=bez(Math.max(0,u-.01));P.push(q);T.push(Math.atan2(q2[1]-q1[1],q2[0]-q1[0])*180/Math.PI)}
+ $('bmstr').setAttribute('d','M'+P0[0]+' '+(H+10)+' L'+P0[0]+' '+P0[1]+' C'+P1[0]+' '+P1[1]+' '+P2[0]+' '+P2[1]+' '+P3[0]+' '+P3[1]);
+ $('bmend').setAttribute('transform','translate('+P3[0]+' '+P3[1]+') rotate('+T[80]+')');
+ if(!beads.length){const box=$('bmbeads');for(let i=0;i<SZ;i++){const g=mk();beads.push(g);box.appendChild(g)}act=mk();box.appendChild(act)}
+ draw(true)}
+const at=u=>{const f=Math.max(0,Math.min(1,u))*80,i=Math.min(79,Math.floor(f)),k=f-i;return[P[i][0]+(P[i+1][0]-P[i][0])*k,P[i][1]+(P[i+1][1]-P[i][1])*k,T[i]+(T[i+1]-T[i])*k]}
+function stackN(){const c=Math.max(0,roundCount());return c%(SZ+1)}
+function draw(force){if(!P.length)return;const n=stackN();
+ if(force||n!==lastN){lastN=n;for(let i=0;i<SZ;i++){const g=beads[i];if(i<n){const y=P0[1]+30+i*21;g.setAttribute('transform','translate('+P0[0]+' '+y+') rotate(90)');g._e.setAttribute('fill','url(#bgL)');g._g.setAttribute('opacity',i===n-1?'.28':'0');g.style.display=''}else g.style.display='none'}}
+ const p=at(t);act.setAttribute('transform','translate('+p[0].toFixed(1)+' '+p[1].toFixed(1)+') rotate('+p[2].toFixed(0)+')');const lit=Math.min(1,Math.max(0,(t-.45)/.5)),f=lit>.5?'url(#bgL)':'url(#bgU)';if(f!==act._f){act._f=f;act._e.setAttribute('fill',f)}const o=(Math.round(lit*6)/20).toFixed(2);if(o!==act._o){act._o=o;act._g.setAttribute('opacity',o)}}
+function sync(){const ph=$('phrase').textContent;$('bmph').textContent=ph;$('bmph').classList.toggle('long',ph.length>26);const c=$('tap').textContent;if($('bmbox').textContent!==c){$('bmbox').textContent=c;const b=$('bmbox');b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop')}
+ $('bmmeta').textContent=$('meta').textContent;const d=allDhikr().find(x=>x.id===cur)||DHIKR[0];$('bmbi').style.width=(d.n?Math.min(100,100*Math.max(0,roundCount())/d.n):0)+'%';draw(false)}
+function loop(){raf=0;let go=false;
+ if(anim){const k=Math.min(1,(performance.now()-anim.s)/anim.d),e=anim.dir>0?k*k*(3-2*k):1-(1-k)*(1-k);t=anim.from+(anim.to-anim.from)*(anim.dir>0?e:k);if(k>=1){const f=anim.end;anim=null;t=f==='count'?0:t;if(f==='count'){hit()}}go=true}
+ else if(!drag&&t>0){t=Math.max(0,t-.06);go=t>0}
+ else if(drag){t+=(tgt-t)*.6;if(Math.abs(tgt-t)>.002)go=true;else t=tgt}
+ draw(false);if(go||drag||anim)raf=requestAnimationFrame(loop)}
+function kick(){if(!raf)raf=requestAnimationFrame(loop)}
+function hit(){count();sync();$('bmhint').style.opacity='0';if(!mv('bmhint',0))setMeta('bmhint',1);t=0;anim={s:performance.now(),from:.0,to:0,d:1,dir:-1,end:null};anim=null;lastN=-1;draw(true)}
+let RL=0,RT=0;function pt(e){return[e.clientX-RL,e.clientY-RT]}
+function near(x,y,lo,hi){let b=-1,bd=1e9;const a=Math.max(0,Math.floor(lo*80)),z=Math.min(80,Math.ceil(hi*80));for(let i=a;i<=z;i++){const dx=P[i][0]-x,dy=P[i][1]-y,d=dx*dx+dy*dy;if(d<bd){bd=d;b=i}}return[b/80,Math.sqrt(bd)]}
+const st=$('bmst');
+st.addEventListener('pointerdown',e=>{if(!P.length)return;e.preventDefault();try{st.setPointerCapture(e.pointerId)}catch(x){}const rc=$('bmsvg').getBoundingClientRect();RL=rc.left;RT=rc.top;pid=e.pointerId;drag=true;anim=null;moved=false;const q=pt(e);sx=q[0];sy=q[1];st0=performance.now();tgt=t;counted=false;kick()});
+st.addEventListener('pointermove',e=>{if(!drag||e.pointerId!==pid)return;const q=pt(e);if(Math.hypot(q[0]-sx,q[1]-sy)>10)moved=true;
+ if(counted){const r=near(q[0],q[1],0,.3);if(r[1]<110&&r[0]<.3){counted=false;anim=null;t=r[0];tgt=r[0]}kick();return}
+ const r=near(q[0],q[1],Math.max(0,tgt-.3),Math.min(1,tgt+.4));if(r[1]<120){tgt=r[0];if(tgt>=.96&&!counted){counted=true;tgt=0;t=1;hit();t=1;anim={s:performance.now(),from:1,to:0,d:230,dir:-1,end:null}}}kick()});
+function up(e){if(!drag||e.pointerId!==pid)return;drag=false;pid=null;if(!moved&&!counted&&performance.now()-st0<400){anim={s:performance.now(),from:t,to:1,d:240,dir:1,end:'count'}}kick()}
+st.addEventListener('pointerup',up);st.addEventListener('pointercancel',e=>{if(e.pointerId===pid){drag=false;pid=null;kick()}});
+function open_(){$('bm').classList.add('open');t=0;lastN=-1;requestAnimationFrame(()=>{geom();sync();$('bmhint').style.opacity=mv('bmhint',0)?'0':'1'})}
+function close_(){$('bm').classList.remove('open');drag=false;anim=null;if(document.body.classList.contains('focus'))setFocus(false)}
+$('bmopen').onclick=open_;$('bmx').onclick=close_;$('bmundo').onclick=()=>{$('undo').click();lastN=-1;sync()};
+$('bmprev').onclick=()=>{$('prev').click();lastN=-1;sync()};$('bmnext').onclick=()=>{$('next').click();lastN=-1;sync()};
+addEventListener('resize',()=>{if($('bm').classList.contains('open'))geom()});
+addEventListener('keydown',e=>{if(!$('bm').classList.contains('open'))return;if(e.key==='Escape')close_();else if(e.code==='Space'){e.preventDefault();e.stopImmediatePropagation();anim={s:performance.now(),from:0,to:1,d:240,dir:1,end:'count'};kick()}},true);
+window.__bm={open:open_,close:close_};
+})();
+
 async function setFocus(on){document.body.classList.toggle('focus',on);try{if(on&&navigator.wakeLock){wl=await navigator.wakeLock.request('screen')}else if(wl){await wl.release();wl=null}}catch(x){}}
 $('focus').onclick=()=>setFocus(true);$('exitf').onclick=()=>setFocus(false);
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&document.body.classList.contains('focus'))setFocus(true)});
