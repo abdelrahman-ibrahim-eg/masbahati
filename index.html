@@ -49,6 +49,11 @@ svg.ring{position:absolute;inset:0;transform:rotate(-90deg)}
 .mut{color:var(--mut);font-size:13px}
 .big{font-size:32px;color:var(--gold);font-weight:700;line-height:1.3}
 input[type=number],input[type=time]{background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:9px;font-size:16px;width:140px;font-family:inherit}
+.wn{position:fixed;inset:0;background:#000a;display:none;align-items:center;justify-content:center;z-index:40;padding:16px}.wn.open{display:flex}
+.wnbox{width:100%;max-width:420px;max-height:84vh;overflow:auto;background:var(--card);color:var(--ink);border:1px solid var(--gold);border-radius:22px;padding:18px 16px;box-shadow:var(--shadow)}
+.wnbox h2{margin:0 0 4px;font-size:19px;color:var(--gold)}.wnbox .wv{color:var(--mut);font-size:12.5px;margin-bottom:10px}
+.wnbox ul{margin:6px 0 12px;padding:0 18px 0 0;line-height:1.9;font-size:14.5px}.wnbox h3{margin:12px 0 0;font-size:14px;color:var(--teal)}
+.wnbox .btn{width:100%;margin-top:6px}
 .banner{background:linear-gradient(135deg,#4a3a14,#3a2f12);border:1px solid var(--gold);border-radius:16px;padding:12px 14px;margin:8px 0;color:#f6e7bb}
 [data-theme=light] .banner{background:#f6e7bb;color:#4a3608}
 .bar{height:9px;background:var(--ringtrack);border-radius:9px;overflow:hidden;margin:10px 0}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--gold));border-radius:9px;transition:width .3s}
@@ -120,6 +125,7 @@ input[type=search],#dtext,#dn{background:var(--bg);color:var(--ink);border:1px s
  <div class="card"><b>أذكاري</b><p class="mut">الأذكار التي أضفتها بنفسك. يمكنك تعديل النص والعدد أو الحذف. الحذف لا يمسح عدّاتك السابقة.</p><div id="mlist"></div><div class="btns"><button class="btn gold" id="madd" type="button">+ ذكر جديد</button></div></div>
 <div class="card"><b>رأيك يهمني</b><p class="mut">عندك اقتراح أو مشكلة أو فكرة لتحسين مسبحتي؟ راسلني مباشرة على واتساب، أو اكتب رأيك في صفحة GitHub (يلزم حساب مجاني).</p><div class="btns"><a class="btn gold" id="fb" href="https://github.com/abdelrahman-ibrahim-eg/masbahati/issues/new?title=%D8%B1%D8%A3%D9%8A%D9%8A%20%D9%81%D9%8A%20%D9%85%D8%B3%D8%A8%D8%AD%D8%AA%D9%8A" target="_blank" rel="noopener" style="text-decoration:none;text-align:center">اكتب رأيك على GitHub</a><a class="btn gold" id="fbw" href="https://wa.me/201092904828" target="_blank" rel="noopener" style="text-decoration:none;text-align:center">راسلني على واتساب</a></div></div></div></aside>
 <main>
+<div class="wn" id="wn" role="dialog" aria-modal="true" aria-labelledby="wnt"><div class="wnbox"><h2 id="wnt">ما الجديد</h2><div class="wv" id="wnv"></div><div id="wnl"></div><button class="btn gold" id="wnok" type="button">تمام، فهمت</button></div></div>
 <div id="banners"></div><div id="updbox"></div>
 <section id="s-tasbih" class="on">
  <div class="dcard"><button class="arrow" id="prev" type="button" aria-label="السابق">›</button><div class="dmid"><div class="phrase" id="phrase"></div><button class="link" id="pick" type="button">كل الأذكار ▾</button></div><button class="arrow" id="next" type="button" aria-label="التالي">‹</button></div>
@@ -169,9 +175,22 @@ const DHIKR=[
  {id:'tahlil',t:'لا إله إلا الله',n:100},{id:'istighfar',t:'أستغفر الله',n:100},{id:'salat',t:'اللهم صلِّ وسلم على نبينا محمد',short:'الصلاة على النبي',n:100},{id:'free',t:'تسبيح حر',n:0}];
 const $=id=>document.getElementById(id);
 const dayKey=(d=new Date())=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-const VER='5.8';
+const VER='5.9';
 const SEQ=['sub','hamd','akbar'];
 let db,device,seq=0,events=new Map(),meta={},cur='sub',pending=0,vibOn=true,autoOn=false,wl=null;
+const RELEASES=[{v:'5.9',items:['صندوق «ما الجديد» يظهر لك مرة واحدة بعد كل تحديث ليعرّفك بما تغيّر.']},{v:'5.8',items:['التلاوة: اختيار جودة الصوت (عالية أو موفّرة للنت). الجودة الموفّرة للحصري فقط.','تنزيل أي سورة على جهازك لتسمعها أوفلاين، مع نسبة التقدم وحذف التنزيل متى شئت.','قراءة أذكار الصباح والمساء من حصن المسلم بعدّاد لكل ذكر، وتقدّمك محفوظ كل يوم وتعمل بدون إنترنت.','زرّا GitHub وواتساب لإرسال رأيك أو مشكلتك.']}];
+function vcmp(a,b){const x=a.split('.').map(Number),y=b.split('.').map(Number);for(let i=0;i<3;i++){const d=(x[i]||0)-(y[i]||0);if(d)return d}return 0}
+function lsGet(k){try{return localStorage.getItem(k)}catch(e){return null}}function lsSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function whatsNew(firstRun){const seen=lsGet('tasbih-seen');
+ if(seen===VER)return;
+ if(seen===null&&firstRun){lsSet('tasbih-seen',VER);return}
+ const list=RELEASES.filter(r=>vcmp(r.v,VER)<=0&&(seen===null||vcmp(r.v,seen)>0)).sort((a,b)=>vcmp(b.v,a.v)).slice(0,3);
+ if(!list.length){lsSet('tasbih-seen',VER);return}
+ $('wnv').textContent='تم تحديث مسبحتي إلى الإصدار '+VER;
+ $('wnl').innerHTML=list.map(r=>(list.length>1?'<h3>الإصدار '+r.v+'</h3>':'')+'<ul>'+r.items.map(t=>'<li>'+t+'</li>').join('')+'</ul>').join('');
+ const w=$('wn');const close=()=>{lsSet('tasbih-seen',VER);w.classList.remove('open')};
+ $('wnok').onclick=close;w.onclick=e=>{if(e.target===w)close()};
+ setTimeout(()=>w.classList.add('open'),2000)}
 function allDhikr(){return DHIKR.concat(mv('custom',[]))}
 function open(){return new Promise((res,rej)=>{const r=indexedDB.open('tasbih',1);
  r.onupgradeneeded=()=>{const d=r.result;d.createObjectStore('events',{keyPath:'id'});d.createObjectStore('meta',{keyPath:'k'})};
@@ -310,8 +329,8 @@ function hideBoot(){var w=MIN-(Date.now()-T0);if(w>0)setTimeout(hideNow,w);else 
 setTimeout(hideNow,2800);(function(){var b=document.getElementById('boot');if(b)b.addEventListener('click',hideNow)})();
 (async()=>{net();
  db=await open();for(const e of await all('events'))events.set(e.id,e);for(const m of await all('meta'))meta[m.k]=m;
- device=mv('device',null);if(!device){device='d'+Math.random().toString(36).slice(2,10);setMeta('device',device)}
- cur=mv('cur','sub');vibOn=mv('vib',true);autoOn=mv('auto',false);applyTheme();render();showPend();
+ device=mv('device',null);const firstRun=!device;if(!device){device='d'+Math.random().toString(36).slice(2,10);setMeta('device',device)}
+ whatsNew(firstRun);cur=mv('cur','sub');vibOn=mv('vib',true);autoOn=mv('auto',false);applyTheme();render();showPend();
  let st='';try{if(navigator.storage&&navigator.storage.persist){const ok=await navigator.storage.persist();st=ok?'التخزين محمي من المسح التلقائي':'التخزين غير محمي: المتصفح قد يمسحه عند امتلاء المساحة. خذ نسخة احتياطية.'}else st='حالة الحماية غير معروفة'}catch(x){st='حالة الحماية غير معروفة'}
  $('store').textContent=st;
  if('serviceWorker' in navigator&&location.protocol.startsWith('http')){const had=!!navigator.serviceWorker.controller;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had)$('updbox').innerHTML='<div class="upd"><div>تتوفر نسخة جديدة من التطبيق. اضغط إعادة التحميل لتفعيلها.</div><button class="btn gold" type="button" onclick="location.reload()">إعادة التحميل</button></div>'});navigator.serviceWorker.register('sw.js').catch(()=>{});}
