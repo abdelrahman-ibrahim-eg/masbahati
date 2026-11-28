@@ -34,3 +34,5 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+
+- Mushaf page layout: line breaks of the 604-page, 15-line Madani Mushaf (KFGQPC 1405H print), taken from the Quran.com API v4 (verses/by_page, line_v1 field), https://api.quran.com. Only word-to-line assignment is used (mushaf.json); no fonts, glyphs or images. No explicit licence was stated for this dataset. Glyph shapes differ from the print because Amiri Quran is used. Short centered lines are inferred.

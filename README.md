@@ -26,3 +26,5 @@ See SOURCES.md. Quran text CC BY 3.0 (Tanzil), adhkar CC BY 4.0 (OpenDua) and MI
 
 ## License
 Not chosen yet.
+
+Mushaf layout: line breaks from Quran.com API (see SOURCES.md).

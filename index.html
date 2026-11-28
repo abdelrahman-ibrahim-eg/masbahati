@@ -194,6 +194,31 @@ input[type=search],#dtext,#dn{background:var(--bg);color:var(--ink);border:1px s
 .aksh{position:absolute;inset:0;background:#0009;display:none;align-items:flex-end}.aksh.open{display:flex}.aksh>div{background:var(--bg);width:100%;max-height:82%;overflow:auto;border-radius:22px 22px 0 0;padding:16px 16px 28px;border-top:1px solid var(--line)}.aksh h4{margin:14px 0 4px;color:var(--gold)}.aksh p{margin:0;line-height:2;font-size:16px;white-space:pre-wrap}.aksh .cr{font-size:11px;color:var(--mut);margin-top:16px;line-height:1.8}
 .akset label{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}.akset input[type=range]{width:55%}.sw{display:flex;gap:8px}.sw i{width:26px;height:26px;border-radius:50%;border:2px solid var(--line);display:block}.sw i.on{border-color:var(--ink);box-shadow:0 0 0 2px var(--gold)}.akset .seg{margin:0}
 
+
+/* mushaf page view */
+#mv{display:none;flex:1;position:relative;overflow:hidden;align-items:center;justify-content:center;padding:8px 8px 76px;touch-action:pan-y pinch-zoom;user-select:none;-webkit-user-select:none}
+#qr.mm #mv{display:flex}#qr.mm #qbody{display:none}#qr.mm #qfm,#qr.mm #qfp{display:none}
+#mstage{position:relative;perspective:1800px;perspective-origin:50% 50%;flex:none}
+.mp{--mpb:#fbf3dc;--mpi:#1d1708;--mpg:#a87b1f;position:absolute;inset:0;transform-style:preserve-3d;transform-origin:100% 50%;border-radius:6px;box-shadow:0 6px 22px #0004}
+[data-theme=dark] .mp,:root:not([data-theme=light]) .mp{--mpb:#17140c;--mpi:var(--ink);--mpg:#e3bd62}
+.mfa,.mfb{position:absolute;inset:0;border-radius:6px;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--mpb);overflow:hidden}
+.mfb{transform:rotateY(180deg);background:linear-gradient(90deg,#0002,transparent 30%),var(--mpb)}
+.mfr{position:absolute;inset:3.2%;border:2px solid var(--mpg);box-shadow:inset 0 0 0 3px var(--mpb),inset 0 0 0 4px var(--mpg);border-radius:4px;display:grid;padding:1.2% 2.4%;color:var(--qcol,var(--mpi));font-family:QuranFont,"Amiri Quran","Noto Naskh Arabic",serif;direction:rtl}
+.mfr::before,.mfr::after{content:"";position:absolute;width:14px;height:14px;border:2px solid var(--mpg);transform:rotate(45deg);background:var(--mpb)}
+.mfr::before{top:-9px;right:-9px}.mfr::after{bottom:-9px;left:-9px}
+.ml{line-height:1.6;min-height:0;display:flex;align-items:center;justify-content:space-between;white-space:nowrap;gap:.2em;direction:rtl;min-width:0}
+.ml.mc{justify-content:center;gap:.32em}
+.ml .w{flex:none;display:inline-block}
+.ml .v{display:contents}
+.ml .v.sel .w{background:var(--glow);box-shadow:0 0 0 2px var(--glow);border-radius:6px}.ml .v.bm .an{background:var(--teal);color:#fff;border-color:transparent}.ml .v.stop .w{background:#e3bd6233;box-shadow:0 3px 0 var(--mpg)}
+.ml .an{display:inline-block;min-width:1.5em;height:1.5em;line-height:1.5em;text-align:center;border:1.5px solid var(--mpg);border-radius:50%;font-size:.5em;color:var(--mpg);margin:0 .35em;vertical-align:middle;font-family:system-ui,sans-serif;box-shadow:inset 0 0 0 2px var(--mpb),inset 0 0 0 3px var(--mpg)}
+.ml.mh{justify-content:center;position:relative}
+.mh .mhb{position:relative;width:100%;height:84%;border:2px solid var(--mpg);box-shadow:inset 0 0 0 3px var(--mpb),inset 0 0 0 4px var(--mpg);display:grid;place-items:center;border-radius:6px;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--mpg) 16%,transparent),transparent);color:var(--mpg);font-size:1.05em}
+.mh .mhb::before,.mh .mhb::after{content:"";position:absolute;top:50%;width:.7em;height:.7em;border:2px solid var(--mpg);transform:translateY(-50%) rotate(45deg)}.mh .mhb::before{right:3%}.mh .mhb::after{left:3%}
+.ml.mb{justify-content:center}
+.mshade{position:absolute;inset:0;pointer-events:none;border-radius:6px;background:linear-gradient(270deg,#0000 0%,#0006 100%);opacity:0}
+.mpn{position:absolute;bottom:-2.6%;left:0;right:0;text-align:center;font:12px system-ui,sans-serif;color:var(--mut)}
+@media (prefers-reduced-motion:reduce){.mp{transition:none!important}}
 #qpage{color:var(--qcol,var(--ink))}
 .dsec{font-size:13px;font-weight:700;color:var(--gold);margin:16px 4px 6px}
 .srow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 2px;border-top:1px solid var(--line)}.srow:first-of-type{border-top:0}.srow>span:first-child{font-size:14.5px}.srow input[type=range]{width:50%}
@@ -218,7 +243,7 @@ input[type=search],#dtext,#dn{background:var(--bg);color:var(--ink);border:1px s
  <button class="btn" id="shtog" type="button" style="margin-top:10px">إيقاف العدّاد</button>
  <p class="mut" style="font-size:11.5px;line-height:1.7">الخصوصية: العدّاد يرسل رمزًا عشوائيًا مجهولًا فقط عندما يفتح شخص جديد التطبيق من رابطك. لا اسم ولا رقم ولا موقع. يُستخدم تجزئة يومية لعنوان الشبكة لمنع التلاعب ولا يُحفظ العنوان نفسه. الرقم تقريبي ويعدّ الأجهزة لا الأشخاص. باقي التطبيق يعمل أوفلاين كما هو. لو أوقفت العدّاد يصبح رابطك رابطًا عاديًا بلا رمز.</p></div>
 <div class="dsec">عن التطبيق</div><div class="card"><b>تثبيت التطبيق</b><p class="mut">ثبّت مسبحتي على الشاشة الرئيسية لتفتحها كأي تطبيق وتعمل بدون إنترنت.</p><button class="btn gold" id="igopen" type="button" style="width:100%">طريقة التثبيت بالصور</button></div>
-<div class="card"><b>عن التطبيق · المصادر</b><details style="margin-top:8px"><summary class="mut" style="cursor:pointer">عرض المصادر والتراخيص</summary><div class="mut" style="font-size:12.5px;line-height:1.9;margin-top:6px"><p style="margin:4px 0">نص القرآن: مشروع تنزيل (tanzil.net)، النص العثماني، الإصدار 1.1، رخصة CC BY 3.0، بدون تعديل. الخط: Amiri Quran (رخصة OFL).</p><p style="margin:4px 0">التلاوة وتوقيت الآيات: mp3quran.net.</p><p style="margin:4px 0">أذكار الصباح والمساء: حصن المسلم للشيخ سعيد بن علي بن وهف القحطاني، عبر مجموعة OpenDua (الإصدار 0.0.4، رخصة CC BY 4.0، إعداد Ihsan Labs التابعة لـ Human Development Fund، opendua.org).</p><p style="margin:4px 0">التخريج والفضل ونص الحديث وشرح المفردات: مشروع Morning-And-Evening-Adhkar-DB (رخصة MIT، حقوق Seen Arabic)، المبني على حصن المسلم للقحطاني وشرحه وكتابين للشيخ وليد المقدّم.</p><p style="margin:4px 0">يحتاج النص إلى مراجعة بشرية، فراجعه مع نسخة مطبوعة موثوقة قبل الاعتماد عليه.</p></div></details></div>
+<div class="card"><b>عن التطبيق · المصادر</b><details style="margin-top:8px"><summary class="mut" style="cursor:pointer">عرض المصادر والتراخيص</summary><div class="mut" style="font-size:12.5px;line-height:1.9;margin-top:6px"><p style="margin:4px 0">نص القرآن: مشروع تنزيل (tanzil.net)، النص العثماني، الإصدار 1.1، رخصة CC BY 3.0، بدون تعديل. الخط: Amiri Quran (رخصة OFL).</p><p style="margin:4px 0">تخطيط صفحات المصحف (١٥ سطرًا، تقسيم مصحف المدينة ١٤٠٥هـ): بيانات فواصل الأسطر من Quran.com API (بدون استخدام خطوطهم أو صورهم). شكل الحروف يختلف عن المصحف المطبوع.</p><p style="margin:4px 0">التلاوة وتوقيت الآيات: mp3quran.net.</p><p style="margin:4px 0">أذكار الصباح والمساء: حصن المسلم للشيخ سعيد بن علي بن وهف القحطاني، عبر مجموعة OpenDua (الإصدار 0.0.4، رخصة CC BY 4.0، إعداد Ihsan Labs التابعة لـ Human Development Fund، opendua.org).</p><p style="margin:4px 0">التخريج والفضل ونص الحديث وشرح المفردات: مشروع Morning-And-Evening-Adhkar-DB (رخصة MIT، حقوق Seen Arabic)، المبني على حصن المسلم للقحطاني وشرحه وكتابين للشيخ وليد المقدّم.</p><p style="margin:4px 0">يحتاج النص إلى مراجعة بشرية، فراجعه مع نسخة مطبوعة موثوقة قبل الاعتماد عليه.</p></div></details></div>
 <div class="dsec">تواصل معنا</div><div class="card"><b>رأيك يهمني</b><p class="mut">عندك اقتراح أو مشكلة أو فكرة لتحسين مسبحتي؟ راسلني مباشرة على واتساب، أو اكتب رأيك في صفحة GitHub (يلزم حساب مجاني).</p><div class="btns"><a class="btn gold" id="fb" href="https://github.com/abdelrahman-ibrahim-eg/masbahati/issues/new?title=%D8%B1%D8%A3%D9%8A%D9%8A%20%D9%81%D9%8A%20%D9%85%D8%B3%D8%A8%D8%AD%D8%AA%D9%8A" target="_blank" rel="noopener" style="text-decoration:none;text-align:center">اكتب رأيك على GitHub</a><a class="btn gold" id="fbw" href="https://wa.me/201092904828" target="_blank" rel="noopener" style="text-decoration:none;text-align:center">راسلني على واتساب</a></div></div></div></aside>
 <main>
 <div class="wn" id="wn" role="dialog" aria-modal="true" aria-labelledby="wnt"><div class="wnbox"><h2 id="wnt">ما الجديد</h2><div class="wv" id="wnv"></div><div id="wnl"></div><button class="btn gold" id="wnok" type="button">تمام، فهمت</button></div></div>
@@ -295,7 +320,8 @@ input[type=search],#dtext,#dn{background:var(--bg);color:var(--ink);border:1px s
  <p class="mut">المصدر: mp3quran.net. التلاوة بصوت القارئ المختار من موقعهم مباشرة.</p>
 </section>
 <div class="ver" id="ver"></div></main>
-<div id="qr" role="dialog" aria-modal="true" aria-label="المصحف"><div class="qtop"><button class="qib" id="qx" type="button" aria-label="إغلاق">✕</button><button class="qib" id="qfi" type="button" aria-label="فهرس">☰</button><div class="tt"><b id="qt1"></b><span id="qt2"></span></div><button class="qib" id="qfm" type="button" aria-label="تصغير الخط">أ-</button><button class="qib" id="qfp" type="button" aria-label="تكبير الخط">أ+</button></div>
+<div id="qr" role="dialog" aria-modal="true" aria-label="المصحف"><div class="qtop"><button class="qib" id="qx" type="button" aria-label="إغلاق">✕</button><button class="qib" id="qfi" type="button" aria-label="فهرس">☰</button><div class="tt"><b id="qt1"></b><span id="qt2"></span></div><button class="qib" id="qmd" type="button" aria-label="تبديل شكل الصفحة: مصحف أو نص عادي"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8.5 8h7M8.5 12h7M8.5 16h7"/></svg></button><button class="qib" id="qfm" type="button" aria-label="تصغير الخط">أ-</button><button class="qib" id="qfp" type="button" aria-label="تكبير الخط">أ+</button></div>
+<div id="mv"><div id="mstage"></div></div>
 <div id="qbody"><div id="qpage"></div><p class="mut" id="qcred" style="text-align:center;font-size:11px;margin-top:20px"></p></div>
 <div id="qact"><div class="mut" id="qat" style="text-align:center"></div><div class="row"><button class="btn gold" id="qstop" type="button">وقفت هنا</button><button class="btn" id="qbmk" type="button">علامة</button><button class="btn" id="qcp" type="button">نسخ</button><button class="btn" id="qcl2" type="button">إلغاء</button></div></div>
 <div class="qfoot"><button class="btn" id="qpv" type="button">‹ السابقة</button><button class="btn gold" id="qdn" type="button">أتممت الصفحة ✓</button><button class="btn" id="qnx" type="button">التالية ›</button></div>
@@ -309,10 +335,10 @@ const DHIKR=[
  {id:'tahlil',t:'لا إله إلا الله',n:100},{id:'istighfar',t:'أستغفر الله',n:100},{id:'salat',t:'اللهم صلِّ وسلم على نبينا محمد',short:'الصلاة على النبي',n:100},{id:'free',t:'تسبيح حر',n:0}];
 const $=id=>document.getElementById(id);
 const dayKey=(d=new Date())=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-const VER='6.1';
+const VER='6.1.1';
 const SEQ=['sub','hamd','akbar'];
 let db,device,seq=0,events=new Map(),meta={},cur='sub',pending=0,vibOn=true,autoOn=false,wl=null;
-const RELEASES=[{v:'6.1',items:['وضع الخرزات: مسبحة بخرزات تسحبها بإصبعك، وكل سحبة كاملة تُحسب عدّة واحدة بنفس عدّاد التطبيق، مع تراجع وصوت اختياري.','التلاوة: تكرار نطاق آيات للحفظ (من آية إلى آية، عدد المرات أو بلا توقف) بتوقيتات حقيقية من mp3quran.net. متاح لـ8 قرّاء، والتوقيت تقريبي.','قارئ جديد: بندر بليلة (القرآن كاملًا) بدل سعود الشريم.','الإعدادات: بطاقة «العرض» (حجم الخط ونوعه ولونه والتشكيل والقراءة الليلية) تنطبق على الأذكار والمصحف، وقسم «عن التطبيق · المصادر» بدل الفقرة الطويلة أسفل الأذكار.','تصميم جديد لقائمة القرّاء والسور: بطاقات، ورقم ونوع السورة وعدد آياتها، ومشغّل ثابت.','الأذكار: شاشة قراءة جديدة بقائمة وبحث، وبطاقة لكل ذكر بالتخريج، وزر «شرح الذكر» (الفضل ونص الحديث وشرح المفردات)، وإعدادات حجم الخط ونوعه ولونه والتشكيل والقراءة الليلية.','إصلاح: حلقة العدّاد الرئيسي كانت تنزاح في بعض الشاشات، وزر الرجوع في الجوال يرجع الآن خطوة بدل الخروج من التطبيق.']},{v:'6.0',items:['المصحف الشريف كامل داخل تبويب الورد، يعمل أوفلاين: قراءة صفحة بصفحة، فهرس السور والأجزاء، علامة «وقفت هنا» وعلامات مرجعية، وتكبير الخط.','زر «أتممت الصفحة» يحتسب الصفحة في وردك اليومي ويفتح التالية.','تبويب إنجازي أعيد ترتيبه حسب النشاط: التسبيح، الأذكار، قراءة القرآن، الاستماع.','تحدي «الملتزم»: عدد أيامك المتتالية مع أوسمة عند 3 و7 و14 و30 يومًا وأكثر.','في الإعدادات: رابط مشاركة خاص بك (صدقة جارية) وعدّاد تقريبي لمن فتح التطبيق عبر رابطك، ويمكن إيقافه.']},{v:'5.9',items:['صندوق «ما الجديد» يظهر لك مرة واحدة بعد كل تحديث ليعرّفك بما تغيّر.']},{v:'5.8',items:['التلاوة: اختيار جودة الصوت (عالية أو موفّرة للنت). الجودة الموفّرة للحصري فقط.','تنزيل أي سورة على جهازك لتسمعها أوفلاين، مع نسبة التقدم وحذف التنزيل متى شئت.','قراءة أذكار الصباح والمساء من حصن المسلم بعدّاد لكل ذكر، وتقدّمك محفوظ كل يوم وتعمل بدون إنترنت.','زرّا GitHub وواتساب لإرسال رأيك أو مشكلتك.']}];
+const RELEASES=[{v:'6.1.1',items:['المصحف بشكل المصحف المطبوع: ١٥ سطرًا في كل صفحة بتقسيم مصحف المدينة (٦٠٤ صفحة)، مع إطار الصفحة وبانر اسم السورة وعلامات نهاية الآية.','تقليب الصفحات بالسحب بإصبعك (من اليمين لليسار) بحركة قلب ورقة، أو بالأزرار. تقدر ترجع للنص المتدفق بزر التبديل أعلى القارئ.','يعمل أوفلاين، ومكان وقوفك وعدّاداتك كما هي. التخطيط: بيانات فواصل الأسطر من Quran.com، والخط وشكل الحروف يختلفان قليلًا عن المصحف المطبوع.']},{v:'6.1',items:['وضع الخرزات: مسبحة بخرزات تسحبها بإصبعك، وكل سحبة كاملة تُحسب عدّة واحدة بنفس عدّاد التطبيق، مع تراجع وصوت اختياري.','التلاوة: تكرار نطاق آيات للحفظ (من آية إلى آية، عدد المرات أو بلا توقف) بتوقيتات حقيقية من mp3quran.net. متاح لـ8 قرّاء، والتوقيت تقريبي.','قارئ جديد: بندر بليلة (القرآن كاملًا) بدل سعود الشريم.','الإعدادات: بطاقة «العرض» (حجم الخط ونوعه ولونه والتشكيل والقراءة الليلية) تنطبق على الأذكار والمصحف، وقسم «عن التطبيق · المصادر» بدل الفقرة الطويلة أسفل الأذكار.','تصميم جديد لقائمة القرّاء والسور: بطاقات، ورقم ونوع السورة وعدد آياتها، ومشغّل ثابت.','الأذكار: شاشة قراءة جديدة بقائمة وبحث، وبطاقة لكل ذكر بالتخريج، وزر «شرح الذكر» (الفضل ونص الحديث وشرح المفردات)، وإعدادات حجم الخط ونوعه ولونه والتشكيل والقراءة الليلية.','إصلاح: حلقة العدّاد الرئيسي كانت تنزاح في بعض الشاشات، وزر الرجوع في الجوال يرجع الآن خطوة بدل الخروج من التطبيق.']},{v:'6.0',items:['المصحف الشريف كامل داخل تبويب الورد، يعمل أوفلاين: قراءة صفحة بصفحة، فهرس السور والأجزاء، علامة «وقفت هنا» وعلامات مرجعية، وتكبير الخط.','زر «أتممت الصفحة» يحتسب الصفحة في وردك اليومي ويفتح التالية.','تبويب إنجازي أعيد ترتيبه حسب النشاط: التسبيح، الأذكار، قراءة القرآن، الاستماع.','تحدي «الملتزم»: عدد أيامك المتتالية مع أوسمة عند 3 و7 و14 و30 يومًا وأكثر.','في الإعدادات: رابط مشاركة خاص بك (صدقة جارية) وعدّاد تقريبي لمن فتح التطبيق عبر رابطك، ويمكن إيقافه.']},{v:'5.9',items:['صندوق «ما الجديد» يظهر لك مرة واحدة بعد كل تحديث ليعرّفك بما تغيّر.']},{v:'5.8',items:['التلاوة: اختيار جودة الصوت (عالية أو موفّرة للنت). الجودة الموفّرة للحصري فقط.','تنزيل أي سورة على جهازك لتسمعها أوفلاين، مع نسبة التقدم وحذف التنزيل متى شئت.','قراءة أذكار الصباح والمساء من حصن المسلم بعدّاد لكل ذكر، وتقدّمك محفوظ كل يوم وتعمل بدون إنترنت.','زرّا GitHub وواتساب لإرسال رأيك أو مشكلتك.']}];
 function vcmp(a,b){const x=a.split('.').map(Number),y=b.split('.').map(Number);for(let i=0;i<3;i++){const d=(x[i]||0)-(y[i]||0);if(d)return d}return 0}
 function lsGet(k){try{return localStorage.getItem(k)}catch(e){return null}}function lsSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 function whatsNew(firstRun){const seen=lsGet('tasbih-seen');
@@ -585,14 +611,14 @@ function qCardRender(){const c=$('qs');if(!c)return;const st=qStopI();
 function qRender(keep){if(!QD)return;qp=Math.max(1,Math.min(604,qp));const a=qFirst(qp),z=qLast(qp);const B=new Set(qBms().map(x=>x.i)),S=qStopI();let h='';
  for(let i=a;i<=z;i++){const su=qSura(i),ay=i-QD.sa[su]+1;if(ay===1){h+='<div class="sh">سورة '+QD.s[su][0]+'</div>';if(su!==0&&su!==8)h+='<div class="bs">'+QD.bis+'</div>'}
   h+='<span class="v'+(B.has(i)?' bm':'')+(S===i?' stop':'')+(qsel===i?' sel':'')+'" data-i="'+i+'">'+QD.t[i]+' <span class="an">'+AD9(ay)+'</span></span> '}
- $('qpage').innerHTML=h;let f=qSura(a);for(let i=a;i<=z;i++)if(i===QD.sa[qSura(i)])f=qSura(i);$('qt1').textContent='سورة '+QD.s[f][0];$('qt2').textContent='الجزء '+AD9(qJuz(a))+' · صفحة '+AD9(qp)+' من '+AD9(604);
+ if(MM())mRender();else $('qpage').innerHTML=h;let f=qSura(a);for(let i=a;i<=z;i++)if(i===QD.sa[qSura(i)])f=qSura(i);$('qt1').textContent='سورة '+QD.s[f][0];$('qt2').textContent='الجزء '+AD9(qJuz(a))+' · صفحة '+AD9(qp)+' من '+AD9(604);
  const done=((mv('qdone:'+dayKey(),[])).indexOf(qp)>=0);$('qdn').textContent=done?'تمّت اليوم ✓':'أتممت الصفحة ✓';$('qpv').disabled=qp<=1;$('qnx').disabled=qp>=604;
  if(!keep)$('qbody').scrollTop=0;
  $('qcred').textContent='نص القرآن: مشروع تنزيل (tanzil.net)، النص العثماني، الإصدار 1.1، رخصة CC BY 3.0، بدون تعديل. الخط: Amiri Quran (رخصة OFL).'}
 function qSave(){clearTimeout(qTimer);qTimer=setTimeout(()=>{setMeta('qlast',qp)},500)}
 function qGo(p,keep){qp=Math.max(1,Math.min(604,p));qsel=null;$('qact').classList.remove('open');qRender(keep);qSave()}
 async function qOpenAt(p){const ok=await qLoad();if(!ok){toast('تعذّر تحميل المصحف. افتح التطبيق مرة بالنت لحفظه.');return false}
- const fs=mv('qfs',26);$('qr').style.setProperty('--qfs',fs+'px');qOpen=true;$('qr').classList.add('open');document.body.style.overflow='hidden';qGo(p);try{history.pushState({q:1},'')}catch(e){}return true}
+ await mLoad();const fs=mv('qfs',26);$('qr').style.setProperty('--qfs',fs+'px');$('qr').classList.toggle('mm',MM());qOpen=true;$('qr').classList.add('open');document.body.style.overflow='hidden';qGo(p);try{history.pushState({q:1},'')}catch(e){}return true}
 function qClose(fromPop){if(!qOpen)return;qOpen=false;$('qr').classList.remove('open');$('qsheet').classList.remove('open');$('qact').classList.remove('open');document.body.style.overflow='';if(!fromPop){try{if(history.state&&history.state.q)history.back()}catch(e){}}qCardRender();render()}
 addEventListener('popstate',()=>{if(qOpen)qClose(true);else if($('ak').classList.contains('open')){if(akI>=0){akI=-1;akDraw();try{history.pushState({ak:1},'')}catch(e){}}else{$('ak').classList.remove('open');render()}}});
 async function qContinue(){await qLoad();const st=qStopI();const p=(st!=null&&QD)?qPageOf(st):(mv('qlast',0)||1);qOpenAt(p)}
@@ -609,16 +635,63 @@ $('qcont').onclick=qContinue;$('qidx').onclick=async()=>{if(await qOpenAt(mv('ql
 $('qx').onclick=()=>qClose();$('qfi').onclick=()=>qSheetOpen('s');$('qsc').onclick=()=>$('qsheet').classList.remove('open');
 $('qtabs').onclick=e=>{const b=e.target.closest('button');if(b)qSheet(b.dataset.t)};$('qsq').oninput=()=>qSheet('s');
 $('qil').onclick=e=>{const x=e.target.closest('[data-x]');if(x){const i=+x.dataset.x;setMeta('qbm',qBms().filter(b=>b.i!==i));qSheet('b');qRender(true);return}const b=e.target.closest('[data-p]');if(b){$('qsheet').classList.remove('open');qGo(+b.dataset.p)}};
-$('qpv').onclick=()=>qGo(qp-1);$('qnx').onclick=()=>qGo(qp+1);
-$('qdn').onclick=()=>{const k='qdone:'+dayKey(),L=mv(k,[]);if(L.indexOf(qp)<0){setMeta(k,L.concat(qp));addEvent('wird','pages',1);const g=mv('goal',5),n=sum('wird','pages',dayKey());toast('تم احتساب الصفحة في وردك: '+n+' / '+g)}if(qp<604)qGo(qp+1);else{qRender(true);toast('ما شاء الله، أتممت المصحف')}render()};
+
+/* ===== mushaf page layout (15-line Madani line breaks) ===== */
+let MD=null,mFontOk=false,mTokC={};
+async function mLoad(){if(MD)return MD;try{const r=await fetch('mushaf.json');if(!r.ok)throw 0;const j=await r.json();if(!j||!Array.isArray(j.p)||j.p.length!==604)throw 0;MD=j.p}catch(e){MD=null}return MD}
+const MM=()=>!!MD&&mv('qmode','m')==='m'&&!!QD;
+const mRM=()=>{try{return matchMedia('(prefers-reduced-motion:reduce)').matches}catch(e){return false}};
+function mTok(vi){if(mTokC[vi])return mTokC[vi];const out=[];let pend='';for(const t of QD.t[vi].split(/\s+/)){if(!t)continue;if(/^[\u06D6-\u06ED\u0615-\u061A\u08D3-\u08FF]+$/.test(t)&&out.length)out[out.length-1]+=' '+t;else if(t==='\u06DE'||t==='۞')pend='۞ ';else if(pend){out.push(pend+t);pend=''}else out.push(t)}
+ const su=qSura(vi),key=(su+1)+':'+(vi-QD.sa[su]+1);if(key==='2:181'||key==='8:6'||key==='13:37'){const i=out.indexOf('بَعْدَ');if(i>=0)out.splice(i,2,out[i]+' '+out[i+1])}else if(key==='37:130'&&out.length>3)out.splice(2,2,out[2]+' '+out[3]);
+ return mTokC[vi]=out}
+const mBm=()=>new Set(qBms().map(x=>x.i));
+function mLine(l,B,S){const d=document.createElement('div');d.className='ml';
+ if(l[0]==='h'){d.className='ml mh';d.innerHTML='<div class="mhb">سُورَةُ '+QD.s[l[1]][0]+'</div>';return d}
+ if(l[0]==='b'){d.className='ml mb';d.textContent=QD.bis;return d}
+ let h='';for(const [vi,a,b,e] of l){const T=a?mTok(vi).slice(a-1,b):[];const ay=vi-QD.sa[qSura(vi)]+1;h+='<span class="v'+(B.has(vi)?' bm':'')+(S===vi?' stop':'')+(qsel===vi?' sel':'')+'" data-i="'+vi+'">';
+  T.forEach((w,k)=>{h+='<span class="w">'+w+((e&&k===T.length-1)?'<span class="an">'+AD9(ay)+'</span>':'')+'</span>'});
+  if(e&&!T.length)h+='<span class="w"><span class="an">'+AD9(ay)+'</span></span>';h+='</span>'}
+ d.innerHTML=h;return d}
+function mSize(){const v=$('mv');const aw=v.clientWidth-16,ah=v.clientHeight-84;let W=Math.min(aw,520),H=Math.min(ah,W*1.62);if(H<W*1.25)W=Math.min(W,H/1.25);return{W:Math.floor(W),H:Math.floor(H)}}
+function mPage(p){const L=MD[p-1],n=L.length,B=mBm(),S=qStopI();const el=document.createElement('div');el.className='mp';const A=document.createElement('div');A.className='mfa';const fr=document.createElement('div');fr.className='mfr';fr.style.gridTemplateRows='repeat('+n+',minmax(0,1fr))';
+ L.forEach(l=>fr.appendChild(mLine(l,B,S)));A.appendChild(fr);el.appendChild(A);const bk=document.createElement('div');bk.className='mfb';el.appendChild(bk);const sh=document.createElement('div');sh.className='mshade';el.appendChild(sh);
+ el.dataset.p=p;return el}
+function mFit(el){const fr=el.querySelector('.mfr'),L=[...fr.children],iw=fr.clientWidth-parseFloat(getComputedStyle(fr).paddingLeft)-parseFloat(getComputedStyle(fr).paddingRight),lh=fr.clientHeight/Math.max(L.length,8);
+ fr.style.fontSize='100px';let mx=1;const nat=L.map(d=>{if(d.classList.contains('mh')||d.classList.contains('mb'))return 0;d.style.justifyContent='flex-start';const w=d.scrollWidth;d.style.justifyContent='';if(w>mx)mx=w;return w});
+ let fs=100*iw/mx;fs=Math.min(fs,lh*0.7,34);fr.style.fontSize=fs.toFixed(2)+'px';
+ L.forEach((d,i)=>{const nx=L[i+1],last=!nx||nx.classList.contains('mh');if(nat[i]&&last&&nat[i]*fs/100<iw*0.82)d.classList.add('mc')});
+ return fs}
+function mRender(){const st=$('mstage');if(!MD)return;const{W,H}=mSize();st.style.width=W+'px';st.style.height=H+'px';st.innerHTML='';const el=mPage(qp);st.appendChild(el);mFit(el);
+ if(!mFontOk&&document.fonts&&document.fonts.load){document.fonts.load('40px QuranFont').then(()=>{mFontOk=true;if(qOpen&&MM()&&!mDrag.on)mRender()}).catch(()=>{mFontOk=true})}}
+const mDrag={on:false,moved:false,anim:false};
+function mSetTheta(fl,nx,th){fl.style.transform='rotateY('+th.toFixed(2)+'deg)';const p=th/180;const sh=fl.querySelector('.mshade');fl.style.zIndex=3;nx.style.zIndex=1;nx.querySelector('.mshade').style.opacity=(0.9*(1-Math.abs(p-0.5)*2)).toFixed(3)}
+function mTurnStart(dir){/* dir=+1 next page (finger moves right), -1 previous */const st=$('mstage');const cur=st.querySelector('.mp');const tp=qp+dir;if(tp<1||tp>604)return null;const o=mPage(tp);st.appendChild(o);mFit(o);let fl,un,th0;
+ if(dir>0){fl=cur;un=o;th0=0}else{fl=o;un=cur;th0=180}
+ fl.style.transition='none';mSetTheta(fl,un,th0);return{fl,un,dir,tp}}
+function mFinish(t,ok){const st=$('mstage');if(ok){qGo(t.tp)}else{t.fl.style.transform='';t.fl.style.zIndex='';t.un.style.zIndex='';const sh=t.un.querySelector('.mshade');if(sh)sh.style.opacity=0;if(t.dir>0)t.un.remove();else t.fl.remove();mRender()}mDrag.anim=false}
+function mAnimate(t,from,to,ms,ok){mDrag.anim=true;const t0=performance.now();const ease=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;(function f(now){const k=Math.min(1,(now-t0)/ms);mSetTheta(t.fl,t.un,from+(to-from)*ease(k));if(k<1)requestAnimationFrame(f);else mFinish(t,ok)})(t0)}
+function qGoA(p){p=Math.max(1,Math.min(604,p));if(p===qp)return;if(!MM()||mRM()||mDrag.anim||mDrag.on||Math.abs(p-qp)!==1||!$('qr').classList.contains('open')){qGo(p);return}
+ qsel=null;$('qact').classList.remove('open');const dir=p>qp?1:-1;const t=mTurnStart(dir);if(!t){qGo(p);return}
+ const from=dir>0?0:180,to=dir>0?180:0;mAnimate(t,from,to,520,true)}
+(function(){const st=$('mstage');let sx=0,sy=0,t=null,id=null,W=300,t0=0,lastx=0,lastt=0,vx=0;
+ st.addEventListener('pointerdown',e=>{if(mDrag.anim||!MM())return;id=e.pointerId;sx=e.clientX;sy=e.clientY;lastx=sx;lastt=performance.now();vx=0;t=null;mDrag.moved=false;W=st.clientWidth||300});
+ st.addEventListener('pointermove',e=>{if(e.pointerId!==id)return;const dx=e.clientX-sx,dy=e.clientY-sy;const n=performance.now();if(n>lastt){vx=(e.clientX-lastx)/(n-lastt);lastx=e.clientX;lastt=n}
+  if(!t){if(Math.abs(dx)<10||Math.abs(dx)<Math.abs(dy)*1.2)return;t=mTurnStart(dx>0?1:-1);if(!t){id=null;return}mDrag.on=true;mDrag.moved=true;qsel=null;$('qact').classList.remove('open');try{st.setPointerCapture(id)}catch(x){}}
+  let p=Math.max(0,Math.min(1,(t.dir>0?dx:-dx)/(W*0.85)));t.p=p;mSetTheta(t.fl,t.un,t.dir>0?180*p:180*(1-p))});
+ const end=e=>{if(e.pointerId!==id)return;id=null;if(!t){mDrag.on=false;setTimeout(()=>{mDrag.moved=false},0);return}const tt=t;t=null;mDrag.on=false;const p=tt.p||0;const fast=(tt.dir>0?vx:-vx)>0.6;const ok=p>0.33||(fast&&p>0.12);const cur=tt.dir>0?180*p:180*(1-p),to=ok?(tt.dir>0?180:0):(tt.dir>0?0:180);mAnimate(tt,cur,to,mRM()?1:Math.max(180,380*Math.abs(to-cur)/180),ok);setTimeout(()=>{mDrag.moved=false},60)};
+ st.addEventListener('pointerup',end);st.addEventListener('pointercancel',end);
+ addEventListener('resize',()=>{if(qOpen&&MM()&&!mDrag.anim&&!mDrag.on)qRender(true)})})();
+$('qmd').onclick=async()=>{if(!MD&&!(await mLoad())){toast('بيانات شكل المصحف غير محفوظة بعد. افتح التطبيق مرة بالنت.');return}const m=mv('qmode','m')==='m'?'f':'m';setMeta('qmode',m);$('qr').classList.toggle('mm',m==='m');qsel=null;$('qact').classList.remove('open');qRender();toast(m==='m'?'شكل المصحف':'نص عادي قابل لتكبير الخط')};
+$('qpv').onclick=()=>qGoA(qp-1);$('qnx').onclick=()=>qGoA(qp+1);
+$('qdn').onclick=()=>{const k='qdone:'+dayKey(),L=mv(k,[]);if(L.indexOf(qp)<0){setMeta(k,L.concat(qp));addEvent('wird','pages',1);const g=mv('goal',5),n=sum('wird','pages',dayKey());toast('تم احتساب الصفحة في وردك: '+n+' / '+g)}if(qp<604)qGoA(qp+1);else{qRender(true);toast('ما شاء الله، أتممت المصحف')}render()};
 $('qfp').onclick=()=>{const v=Math.min(44,mv('qfs',26)+2);setMeta('qfs',v);$('qr').style.setProperty('--qfs',v+'px')};$('qfm').onclick=()=>{const v=Math.max(18,mv('qfs',26)-2);setMeta('qfs',v);$('qr').style.setProperty('--qfs',v+'px')};
-$('qpage').onclick=e=>{const v=e.target.closest('.v');if(!v)return;const i=+v.dataset.i;qsel=qsel===i?null:i;qRender(true);if(qsel!=null){$('qat').textContent=qDesc(i);$('qbmk').textContent=qBms().some(b=>b.i===i)?'حذف العلامة':'علامة';$('qact').classList.add('open')}else $('qact').classList.remove('open')};
+const qVerse=e=>{const v=e.target.closest('.v');if(!v)return;const i=+v.dataset.i;qsel=qsel===i?null:i;qRender(true);if(qsel!=null){$('qat').textContent=qDesc(i);$('qbmk').textContent=qBms().some(b=>b.i===i)?'حذف العلامة':'علامة';$('qact').classList.add('open')}else $('qact').classList.remove('open')};$('qpage').onclick=qVerse;$('mstage').onclick=e=>{if(mDrag.moved)return;qVerse(e)};
 $('qcl2').onclick=()=>{qsel=null;$('qact').classList.remove('open');qRender(true)};
 $('qstop').onclick=()=>{if(qsel==null)return;setMeta('qstop',{i:qsel,ts:Date.now()});setMeta('mark',qPageOf(qsel));toast('تم حفظ وقفتك: '+qDesc(qsel));qsel=null;$('qact').classList.remove('open');qRender(true)};
 $('qbmk').onclick=()=>{if(qsel==null)return;let L=qBms();if(L.some(b=>b.i===qsel))L=L.filter(b=>b.i!==qsel);else L=L.concat({i:qsel,ts:Date.now()}).slice(-200);setMeta('qbm',L);qsel=null;$('qact').classList.remove('open');qRender(true);toast('تم')};
 $('qcp').onclick=async()=>{if(qsel==null)return;const t=QD.t[qsel]+' ﴿'+AD9(qAya(qsel))+'﴾ ['+QD.s[qSura(qsel)][0]+']';try{await navigator.clipboard.writeText(t);toast('تم النسخ')}catch(e){toast('تعذّر النسخ')}};
 (function(){let x0=null,y0=null;const b=$('qbody');b.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});b.addEventListener('touchend',e=>{if(x0==null)return;const dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*2)qGo(qp+(dx>0?1:-1))},{passive:true})})();
-addEventListener('keydown',e=>{if(!qOpen)return;if(e.key==='Escape'){if($('qsheet').classList.contains('open'))$('qsheet').classList.remove('open');else qClose()}else if(e.key==='ArrowLeft')qGo(qp+1);else if(e.key==='ArrowRight')qGo(qp-1)});
+addEventListener('keydown',e=>{if(!qOpen)return;if(e.key==='Escape'){if($('qsheet').classList.contains('open'))$('qsheet').classList.remove('open');else qClose()}else if(e.key==='ArrowLeft')qGoA(qp+1);else if(e.key==='ArrowRight')qGoA(qp-1)});
 /* listening time */
 (function(){const a=$('au');if(!a)return;let lt=0,acc=0;const flush=()=>{const n=Math.round(acc);acc=0;if(n>0){addEvent('listen','sec',n);if(document.getElementById('s-stats').classList.contains('on'))stats()}};
  a.addEventListener('timeupdate',()=>{if(a.paused)return;const d=a.currentTime-lt;if(d>0&&d<2)acc+=d;lt=a.currentTime;if(acc>=30)flush()});
